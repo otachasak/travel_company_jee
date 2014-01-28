@@ -133,15 +133,23 @@
          <scope>test</scope>
       </dependency>
 
-      <!-- Optional, but highly recommended -->
-      <!-- Arquillian allows you to test enterprise code such as EJBs and 
-         Transactional(JTA) JPA from JUnit/TestNG -->
-      <dependency>
-         <groupId>org.jboss.arquillian.junit</groupId>
-         <artifactId>arquillian-junit-container</artifactId>
-         <version>1.0.0.CR4</version>
-         <scope>test</scope>
-      </dependency>
+       <!-- Optional, but highly recommended -->
+       <!-- Arquillian allows you to test enterprise code such as EJBs and
+          Transactional(JTA) JPA from JUnit/TestNG -->
+       <dependency>
+           <groupId>org.jboss.arquillian.junit</groupId>
+           <artifactId>arquillian-junit-container</artifactId>
+           <version>1.0.0.CR7</version>
+           <scope>test</scope>
+       </dependency>
+
+       <dependency>
+           <groupId>org.jboss.arquillian.protocol</groupId>
+           <artifactId>arquillian-protocol-servlet</artifactId>
+           <version>1.0.0.CR7</version>
+           <scope>test</scope>
+       </dependency>
+
 
    </dependencies>
 

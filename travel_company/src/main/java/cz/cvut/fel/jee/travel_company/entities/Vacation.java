@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
  *
  */
 @Entity
-@NamedQuery(name="findAllVacations", query="SELECT v FROM Vacation v")
+@NamedQuery(name="Vacation.findAllVacations", query="SELECT v FROM Vacation v")
 public class Vacation extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 	

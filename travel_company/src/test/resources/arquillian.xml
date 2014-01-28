@@ -14,9 +14,9 @@
       <protocol type="jmx-as7">
          <property name="executionType">REMOTE</property>
       </protocol>
-      <configuration>
-         <property name="jbossHome">/path/to/jboss/as</property>
-      </configuration>
+      <!--<configuration>-->
+         <!--<property name="jbossHome">/path/to/jboss/as</property>-->
+      <!--</configuration>-->
    </container>
 
 </arquillian>
