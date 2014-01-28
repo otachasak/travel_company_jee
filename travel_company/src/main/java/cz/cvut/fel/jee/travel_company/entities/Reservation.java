@@ -1,4 +1,4 @@
-package cz.cvut.fel.jee.travel_company.data;
+package cz.cvut.fel.jee.travel_company.entities;
 
 import java.io.Serializable;
 
@@ -12,12 +12,8 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @NamedQuery(name="findAllReservations", query="SELECT r FROM Reservation r")
-public class Reservation implements Serializable {
+public class Reservation extends BaseEntity {
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
 	
 	@NotNull
 	@Min(1)
@@ -29,14 +25,6 @@ public class Reservation implements Serializable {
 
 	public Reservation() {
 		super();
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public Integer getPlaces() {

@@ -1,4 +1,4 @@
-package cz.cvut.fel.jee.travel_company.data;
+package cz.cvut.fel.jee.travel_company.entities;
 
 import java.io.Serializable;
 import java.sql.Date;
@@ -14,12 +14,8 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @NamedQuery(name="findAllVacations", query="SELECT v FROM Vacation v")
-public class Vacation implements Serializable {
+public class Vacation extends BaseEntity {
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
 	
 	@NotNull
 	private Date startDate;
@@ -39,14 +35,6 @@ public class Vacation implements Serializable {
 
 	public Vacation() {
 		super();
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public Date getStartDate() {
