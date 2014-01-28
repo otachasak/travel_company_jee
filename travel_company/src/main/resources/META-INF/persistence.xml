@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+   xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="
+        http://java.sun.com/xml/ns/persistence
+        http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+   <persistence-unit name="TravelCompanyPU">
+      <!-- If you are running in a production environment, add a managed 
+         data source, the example data source is just for proofs of concept! -->
+      <jta-data-source>java:jboss/datasources/TravelCompanyDS</jta-data-source>
+      <class>cz.cvut.fel.jee.travel_company.data.Destination</class>
+      <class>cz.cvut.fel.jee.travel_company.data.Reservation</class>
+      <class>cz.cvut.fel.jee.travel_company.data.Vacation</class>
+      <properties>
+         <!-- Properties for Hibernate -->
+         <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+         <property name="hibernate.show_sql" value="false" />
+         <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"/>
+      </properties>
+   </persistence-unit>
+</persistence>
