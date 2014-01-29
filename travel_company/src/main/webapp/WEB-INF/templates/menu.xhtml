@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+    <title>Menu</title>
+</h:head>
+<h:body>
+    <ui:composition>
+        <ul>
+            <li><h:link outcome="vacations.xhtml" value="#{msg.menu1vacations}"/></li>
+            <li><h:link outcome="menu2" value="#{msg.menu2}"/></li>
+            <li><h:link outcome="menu3" value="#{msg.menu3}"/></li>
+            <li><h:link outcome="menu4" value="#{msg.menu4}"/></li>
+        </ul>
+    </ui:composition>
+</h:body>
+</html>
