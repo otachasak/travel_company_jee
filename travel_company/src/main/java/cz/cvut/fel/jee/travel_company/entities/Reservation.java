@@ -6,6 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import cz.cvut.fel.jee.travel_company.entities.dto.ReservationDTO;
+
 /**
  * Entity implementation class for Entity: Reservation
  *
@@ -25,6 +27,11 @@ public class Reservation extends BaseEntity {
 
 	public Reservation() {
 		super();
+	}
+	
+	public Reservation(ReservationDTO reservation){
+		super();
+		this.places = reservation.getPlaces();
 	}
 
 	public Integer getPlaces() {

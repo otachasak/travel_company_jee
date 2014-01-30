@@ -8,6 +8,8 @@
       <!-- If you are running in a production environment, add a managed 
          entities source, the example entities source is just for proofs of concept! -->
       <jta-data-source>java:jboss/datasources/TravelCompanyDS</jta-data-source>
+      <class>cz.cvut.fel.jee.travel_company.entities.BaseEntity</class>
+      <class>cz.cvut.fel.jee.travel_company.entities.Customer</class>
       <class>cz.cvut.fel.jee.travel_company.entities.Destination</class>
       <class>cz.cvut.fel.jee.travel_company.entities.Reservation</class>
       <class>cz.cvut.fel.jee.travel_company.entities.Vacation</class>

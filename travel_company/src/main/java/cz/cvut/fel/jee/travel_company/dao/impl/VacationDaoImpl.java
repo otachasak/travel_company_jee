@@ -1,5 +1,7 @@
 package cz.cvut.fel.jee.travel_company.dao.impl;
 
+import cz.cvut.fel.jee.travel_company.entities.Destination;
+import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 import cz.cvut.fel.jee.travel_company.entities.Vacation;
 import cz.cvut.fel.jee.travel_company.entities.dto.VacationDTO;
 import cz.cvut.fel.jee.travel_company.dao.VacationDao;
@@ -28,4 +30,38 @@ public class VacationDaoImpl extends BaseDaoImpl implements VacationDao {
 
         return vacationDTOs;
     }
+
+	@Override
+	public void addVacation(VacationDTO vacation) {
+		em.persist(vacation);
+	}
+
+	@Override
+	public VacationDTO findVacation(Long id) throws EntityNotFoundException {
+		Vacation dbVacation = this.findDbVacation(id);
+		return new VacationDTO(dbVacation);
+	}
+
+	@Override
+	public void updateVacation(VacationDTO vacation) throws EntityNotFoundException {
+		Vacation dbVacation = this.findDbVacation(vacation.getId());
+		/*
+		 * TODO
+		 */
+		this.em.persist(dbVacation);
+	}
+
+	@Override
+	public void deleteVacation(Long id) throws EntityNotFoundException {
+		Vacation dbVacation = this.findDbVacation(id);
+		this.em.remove(dbVacation);
+	}
+	
+	private Vacation findDbVacation(Long id) throws EntityNotFoundException{
+		Vacation vacation = this.em.find(Vacation.class, id);
+		if(vacation == null){
+			throw new EntityNotFoundException(Vacation.class.getName(), id);
+		}
+		return vacation;
+	}
 }

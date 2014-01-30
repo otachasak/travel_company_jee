@@ -8,6 +8,8 @@ import java.sql.Date;
  * DTO for Vacation Entity
  */
 public class VacationDTO {
+	
+	private Long id;
 
     private Date startDate;
 
@@ -23,6 +25,7 @@ public class VacationDTO {
 
 
     public VacationDTO(Vacation srcVacation) {
+    	this.id = srcVacation.getId();
         this.setDestinationName(srcVacation.getDestination().getName());
         this.setDestinationId(srcVacation.getDestination().getId());
         this.setStartDate(srcVacation.getStartDate());
@@ -31,7 +34,15 @@ public class VacationDTO {
         this.setNumberOfReservations(srcVacation.getReservations().size());
     }
 
-    public Date getStartDate() {
+    public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Date getStartDate() {
         return startDate;
     }
 

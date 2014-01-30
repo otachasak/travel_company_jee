@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import cz.cvut.fel.jee.travel_company.entities.dto.DestinationDTO;
+
 /**
  * Entity implementation class for Entity: Destination
  *
@@ -19,6 +21,12 @@ public class Destination extends BaseEntity {
 
 	public Destination() {
 		super();
+	}
+
+	public Destination(DestinationDTO destination) {
+		super();
+		this.setId(destination.getId());
+		this.name = destination.getName();
 	}
 
 	public String getName() {
