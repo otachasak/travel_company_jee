@@ -23,7 +23,7 @@ public class VacationsBB extends BasicBB {
     @Inject
     private DestinationService destinationService;
 
-    private VacationDTO newVacation = new VacationDTO();
+    private VacationDTO modifiedVacation = new VacationDTO();
 
     private Map<String, DestinationDTO> nameToDestination = new HashMap<>();
 
@@ -32,13 +32,20 @@ public class VacationsBB extends BasicBB {
     }
 
     public void addVacation() {
-        logger.info("addVacation(): " + newVacation);
-        vacationService.addVacation(newVacation);
-        newVacation = new VacationDTO();
+        if(modifiedVacation.getId() == null) {
+            vacationService.addVacation(modifiedVacation);
+        } else {
+           vacationService.updateVacation(modifiedVacation);
+        }
+        modifiedVacation = new VacationDTO();
     }
 
     public void deleteVacation(long vacationId) {
         vacationService.deleteVacation(vacationId);
+    }
+
+    public void editVacation(long vacationId) {
+        modifiedVacation = vacationService.findVacationById(vacationId);
     }
 
     public List<String> getAvailableDestinations() {
@@ -52,41 +59,41 @@ public class VacationsBB extends BasicBB {
     }
 
     public String getNewVacationDestination() {
-        if(newVacation == null) {
+        if(modifiedVacation == null) {
             return null;
         }
-        if(newVacation.getDestination() == null) {
+        if(modifiedVacation.getDestination() == null) {
             return null;
         }
 
-        return newVacation.getDestination().getName();
+        return modifiedVacation.getDestination().getName();
     }
 
     public void setNewVacationDestination(String newVacationDestination) {
-        newVacation.setDestination(nameToDestination.get(newVacationDestination));
+        modifiedVacation.setDestination(nameToDestination.get(newVacationDestination));
     }
 
     public Date getStartDate() {
-        return newVacation.getStartDate();
+        return modifiedVacation.getStartDate();
     }
 
     public void setStartDate(Date startDate) {
-        newVacation.setStartDate(startDate);
+        modifiedVacation.setStartDate(startDate);
     }
 
     public Date getEndDate() {
-        return newVacation.getEndDate();
+        return modifiedVacation.getEndDate();
     }
 
     public void setEndDate(Date endDate) {
-        newVacation.setEndDate(endDate);
+        modifiedVacation.setEndDate(endDate);
     }
 
     public Integer getPlaces() {
-        return newVacation.getPlaces();
+        return modifiedVacation.getPlaces();
     }
 
     public void setPlaces(Integer places) {
-        newVacation.setPlaces(places);
+        modifiedVacation.setPlaces(places);
     }
 }

@@ -2,6 +2,7 @@ package cz.cvut.fel.jee.travel_company.services;
 
 import cz.cvut.fel.jee.travel_company.dao.DestinationDao;
 import cz.cvut.fel.jee.travel_company.dao.VacationDao;
+import cz.cvut.fel.jee.travel_company.entities.Destination;
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 import cz.cvut.fel.jee.travel_company.entities.Vacation;
 import cz.cvut.fel.jee.travel_company.entities.dto.VacationDTO;
@@ -40,11 +41,33 @@ public class VacationService extends BasicService {
         return vacationDTOs;
     }
 
+    public VacationDTO findVacationById(long vacationId) {
+        try {
+            Vacation v = vacationDao.findVacation(vacationId);
+            return new VacationDTO(v);
+        } catch (EntityNotFoundException e) {
+            return null;
+        }
+    }
+
     public void addVacation(VacationDTO vacationDTO) {
         Vacation vacation = new Vacation(vacationDTO);
         vacation.setDestination(destinationDao.findDestination(vacationDTO.getDestination().getId()));
 
         vacationDao.addVacation(vacation);
+    }
+
+    public void updateVacation(VacationDTO vacationDTO) {
+        try {
+            Vacation v = vacationDao.findVacation(vacationDTO.getId());
+            Destination d = destinationDao.findDestination(vacationDTO.getDestination().getId());
+            v.setPlaces(vacationDTO.getPlaces());
+            v.setStartDate(new java.sql.Date(vacationDTO.getStartDate().getTime()));
+            v.setEndDate(new java.sql.Date(vacationDTO.getEndDate().getTime()));
+            v.setDestination(d);
+            vacationDao.updateVacation(v);
+        } catch (EntityNotFoundException e) {
+        }
     }
 
     public void deleteVacation(long vacationId) {
