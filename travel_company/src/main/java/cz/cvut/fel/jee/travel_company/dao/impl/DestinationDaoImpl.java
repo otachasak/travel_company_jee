@@ -1,12 +1,16 @@
 package cz.cvut.fel.jee.travel_company.dao.impl;
 
-import java.util.List;
-
 import cz.cvut.fel.jee.travel_company.dao.DestinationDao;
 import cz.cvut.fel.jee.travel_company.dao.impl.base.BaseDaoImpl;
 import cz.cvut.fel.jee.travel_company.entities.Destination;
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 
+import javax.ejb.Stateful;
+import javax.inject.Named;
+import java.util.List;
+
+@Named
+@Stateful
 public class DestinationDaoImpl extends BaseDaoImpl implements DestinationDao {
 
 	@Override
@@ -38,7 +42,7 @@ public class DestinationDaoImpl extends BaseDaoImpl implements DestinationDao {
 		Destination dbDestination = this.findDbDestination(id);
 		em.remove(dbDestination);
 	}
-	
+
 	private Destination findDbDestination(Long id) throws EntityNotFoundException{
 		Destination dbDestination = this.em.find(Destination.class, id);
 		if(dbDestination == null){
