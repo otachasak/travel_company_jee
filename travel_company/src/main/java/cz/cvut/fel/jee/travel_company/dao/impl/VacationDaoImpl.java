@@ -1,6 +1,5 @@
 package cz.cvut.fel.jee.travel_company.dao.impl;
 
-import cz.cvut.fel.jee.travel_company.entities.Destination;
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 import cz.cvut.fel.jee.travel_company.entities.Vacation;
 import cz.cvut.fel.jee.travel_company.entities.dto.VacationDTO;
@@ -11,24 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: vlada
- * Date: 28/01/14
- * Time: 22:10
- * To change this template use File | Settings | File Templates.
  */
 public class VacationDaoImpl extends BaseDaoImpl implements VacationDao {
     @Override
-    public List<VacationDTO> findAllVacations() {
-        List<Vacation> vacations = em.createNamedQuery("Vacation.findAllVacations", Vacation.class)
+    public List<Vacation> findAllVacations() {
+        return em.createNamedQuery("Vacation.findAllVacations", Vacation.class)
                 .getResultList();
-
-        List<VacationDTO> vacationDTOs = new ArrayList<>(vacations.size());
-        for(Vacation vacation : vacations) {
-            vacationDTOs.add(new VacationDTO(vacation));
-        }
-
-        return vacationDTOs;
     }
 
 	@Override
@@ -37,9 +24,9 @@ public class VacationDaoImpl extends BaseDaoImpl implements VacationDao {
 	}
 
 	@Override
-	public VacationDTO findVacation(Long id) throws EntityNotFoundException {
+	public Vacation findVacation(Long id) throws EntityNotFoundException {
 		Vacation dbVacation = this.findDbVacation(id);
-		return new VacationDTO(dbVacation);
+		return dbVacation;
 	}
 
 	@Override

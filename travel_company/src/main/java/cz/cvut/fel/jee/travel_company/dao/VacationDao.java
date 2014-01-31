@@ -1,6 +1,7 @@
 package cz.cvut.fel.jee.travel_company.dao;
 
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
+import cz.cvut.fel.jee.travel_company.entities.Vacation;
 import cz.cvut.fel.jee.travel_company.entities.dto.VacationDTO;
 
 import java.util.List;
@@ -14,9 +15,9 @@ public interface VacationDao {
      * Find all vacations in the system.
      * @return List of all vacations dtos
      */
-    public List<VacationDTO> findAllVacations();
+    public List<Vacation> findAllVacations();
     
-    public VacationDTO findVacation(Long id) throws EntityNotFoundException;
+    public Vacation findVacation(Long id) throws EntityNotFoundException;
     
     /**
      * Inserts vacation into DB

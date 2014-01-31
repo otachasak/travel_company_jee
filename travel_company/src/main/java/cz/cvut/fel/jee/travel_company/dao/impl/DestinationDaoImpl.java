@@ -12,14 +12,10 @@ import cz.cvut.fel.jee.travel_company.entities.dto.DestinationDTO;
 public class DestinationDaoImpl extends BaseDaoImpl implements DestinationDao{
 
 	@Override
-	public List<DestinationDTO> findAllDestinations() {
+	public List<Destination> findAllDestinations() {
 		List<Destination> dbDestinations = this.em.createNamedQuery("findAllDestinations", Destination.class).getResultList();
-		
-		List<DestinationDTO> destinations = new ArrayList<DestinationDTO>();
-		for(Destination destination : dbDestinations){
-			destinations.add(new DestinationDTO(destination));
-		}
-		return destinations;
+
+        return dbDestinations;
 	}
 
 	@Override

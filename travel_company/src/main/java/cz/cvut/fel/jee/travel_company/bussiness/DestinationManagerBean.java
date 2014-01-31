@@ -3,9 +3,11 @@ package cz.cvut.fel.jee.travel_company.bussiness;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cz.cvut.fel.jee.travel_company.dao.DestinationDao;
+import cz.cvut.fel.jee.travel_company.entities.Destination;
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 import cz.cvut.fel.jee.travel_company.entities.dto.DestinationDTO;
 
@@ -16,7 +18,14 @@ public class DestinationManagerBean {
 	private DestinationDao destinationDao;
 	
 	public List<DestinationDTO> findAllDestinations(){
-		return this.destinationDao.findAllDestinations();
+		List<Destination> dbDestinations = destinationDao.findAllDestinations();
+
+        List<DestinationDTO> destinations = new ArrayList<>();
+        for(Destination destination : dbDestinations){
+            destinations.add(new DestinationDTO(destination));
+        }
+        return destinations;
+
 	}
 	
 	public void addDestination(DestinationDTO destination){
