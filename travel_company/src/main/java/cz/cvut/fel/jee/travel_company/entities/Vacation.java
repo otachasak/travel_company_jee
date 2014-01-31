@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import cz.cvut.fel.jee.travel_company.entities.dto.VacationDTO;
+
 /**
  * Entity implementation class for Entity: Vacation
  *
@@ -35,6 +37,14 @@ public class Vacation extends BaseEntity {
 
 	public Vacation() {
 		super();
+	}
+	
+	public Vacation(VacationDTO vacation) {
+		super();
+		this.startDate = new Date(vacation.getStartDate().getTime());
+		this.endDate = new Date(vacation.getEndDate().getTime());
+		this.destination = new Destination(vacation.getDestination());
+		this.places = vacation.getPlaces();
 	}
 
 	public Date getStartDate() {
