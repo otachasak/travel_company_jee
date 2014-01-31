@@ -9,6 +9,8 @@ import cz.cvut.fel.jee.travel_company.dao.impl.base.BaseDaoImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.LockModeType;
+
 /**
  */
 public class VacationDaoImpl extends BaseDaoImpl implements VacationDao {

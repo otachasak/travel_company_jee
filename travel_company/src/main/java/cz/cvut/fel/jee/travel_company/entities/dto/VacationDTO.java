@@ -1,8 +1,11 @@
 package cz.cvut.fel.jee.travel_company.entities.dto;
 
+import cz.cvut.fel.jee.travel_company.entities.Reservation;
 import cz.cvut.fel.jee.travel_company.entities.Vacation;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * DTO for Vacation Entity
@@ -15,23 +18,26 @@ public class VacationDTO {
 
     private Date endDate;
 
-    private Long destinationId;
-
-    private String destinationName;
+    private DestinationDTO destination;
 
     private Integer places;
 
-    private int numberOfReservations;
+    private List<ReservationDTO> reservations;
 
+    public VacationDTO() {
+		super();
+	}
 
-    public VacationDTO(Vacation srcVacation) {
+	public VacationDTO(Vacation srcVacation) {
     	this.id = srcVacation.getId();
-        this.setDestinationName(srcVacation.getDestination().getName());
-        this.setDestinationId(srcVacation.getDestination().getId());
+        this.destination = new DestinationDTO(srcVacation.getDestination());
         this.setStartDate(srcVacation.getStartDate());
         this.setEndDate(srcVacation.getEndDate());
         this.setPlaces(srcVacation.getPlaces());
-        this.setNumberOfReservations(srcVacation.getReservations().size());
+        this.reservations = new ArrayList<ReservationDTO>();
+        for(Reservation srcReservation : srcVacation.getReservations()){
+        	this.reservations.add(new ReservationDTO(srcReservation));
+        }
     }
 
     public Long getId() {
@@ -58,20 +64,12 @@ public class VacationDTO {
         this.endDate = endDate;
     }
 
-    public Long getDestinationId() {
-        return destinationId;
+    public DestinationDTO getDestination() {
+        return destination;
     }
 
-    public void setDestinationId(Long destinationId) {
-        this.destinationId = destinationId;
-    }
-
-    public String getDestinationName() {
-        return destinationName;
-    }
-
-    public void setDestinationName(String destinationName) {
-        this.destinationName = destinationName;
+    public void setDestination(DestinationDTO destination) {
+        this.destination = destination;
     }
 
     public Integer getPlaces() {
@@ -82,11 +80,11 @@ public class VacationDTO {
         this.places = places;
     }
 
-    public int getNumberOfReservations() {
-        return numberOfReservations;
+    public List<ReservationDTO> getReservations() {
+        return reservations;
     }
 
-    public void setNumberOfReservations(int numberOfReservations) {
-        this.numberOfReservations = numberOfReservations;
+    public void setReservations(List<ReservationDTO> reservations) {
+        this.reservations = reservations;
     }
 }
