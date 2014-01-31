@@ -1,12 +1,13 @@
 package cz.cvut.fel.jee.travel_company.dao.impl;
 
 import java.util.List;
+
 import cz.cvut.fel.jee.travel_company.dao.DestinationDao;
 import cz.cvut.fel.jee.travel_company.dao.impl.base.BaseDaoImpl;
 import cz.cvut.fel.jee.travel_company.entities.Destination;
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 
-public class DestinationDaoImpl extends BaseDaoImpl implements DestinationDao{
+public class DestinationDaoImpl extends BaseDaoImpl implements DestinationDao {
 
 	@Override
 	public List<Destination> findAllDestinations() {
