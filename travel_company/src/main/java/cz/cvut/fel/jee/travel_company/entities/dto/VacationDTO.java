@@ -3,6 +3,7 @@ package cz.cvut.fel.jee.travel_company.entities.dto;
 import cz.cvut.fel.jee.travel_company.entities.Reservation;
 import cz.cvut.fel.jee.travel_company.entities.Vacation;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
@@ -23,6 +24,8 @@ public class VacationDTO {
     private Integer places;
 
     private List<ReservationDTO> reservations;
+    
+    private BigDecimal price;
 
     public VacationDTO() {
 		super();
@@ -38,6 +41,7 @@ public class VacationDTO {
         for(Reservation srcReservation : srcVacation.getReservations()){
         	this.reservations.add(new ReservationDTO(srcReservation));
         }
+        this.price = srcVacation.getPrice();
     }
 
     public Long getId() {
@@ -87,4 +91,12 @@ public class VacationDTO {
     public void setReservations(List<ReservationDTO> reservations) {
         this.reservations = reservations;
     }
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
 }

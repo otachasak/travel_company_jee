@@ -4,15 +4,14 @@ import java.util.List;
 
 import cz.cvut.fel.jee.travel_company.entities.Destination;
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
-import cz.cvut.fel.jee.travel_company.entities.dto.DestinationDTO;
 
 public interface DestinationDao {
 
 	public List<Destination> findAllDestinations();
 
-	public DestinationDTO findDestination(Long id) throws EntityNotFoundException;
-	public void addDestination(DestinationDTO destination);
-	public void updateDatination(DestinationDTO destination) throws EntityNotFoundException;
+	public Destination findDestination(Long id) throws EntityNotFoundException;
+	public void addDestination(Destination destination);
+	public void updateDatination(Destination destination) throws EntityNotFoundException;
 	public void deleteDestination(Long id) throws EntityNotFoundException;
 	
 }

@@ -1,45 +1,40 @@
 package cz.cvut.fel.jee.travel_company.dao.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cz.cvut.fel.jee.travel_company.dao.ReservationDao;
 import cz.cvut.fel.jee.travel_company.dao.impl.base.BaseDaoImpl;
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 import cz.cvut.fel.jee.travel_company.entities.Reservation;
-import cz.cvut.fel.jee.travel_company.entities.dto.ReservationDTO;
 
 
 public class ReservationDaoImpl extends BaseDaoImpl implements ReservationDao {
 
 	@Override
-	public List<ReservationDTO> findAllReservations() {
-		List<Reservation> dbReservations = this.em.createNamedQuery("findAllReservations", Reservation.class).getResultList();
-		
-		List<ReservationDTO> reservations = new ArrayList<ReservationDTO>();
-		for(Reservation reservation : dbReservations){
-			reservations.add(new ReservationDTO(reservation));
-		}
+	public List<Reservation> findAllReservations() {
+		List<Reservation> reservations = this.em.createNamedQuery("findAllReservations", Reservation.class).getResultList();
 		return reservations;
 	}
 
 	@Override
-	public void addReservation(ReservationDTO reservation) {
-		this.em.persist(new Reservation(reservation));
+	public void addReservation(Reservation reservation) {
+		this.em.persist(reservation);
 	}
 
 	@Override
-	public ReservationDTO findReservation(Long id)
+	public Reservation findReservation(Long id)
 			throws EntityNotFoundException {
-		Reservation dbReservation = this.findDbReservation(id);
-		return new ReservationDTO(dbReservation);
+		Reservation reservation = this.findDbReservation(id);
+		return reservation;
 	}
 
 	@Override
-	public void updateReservation(ReservationDTO reservation)
+	public void updateReservation(Reservation reservation)
 			throws EntityNotFoundException {
 		Reservation dbReservation = this.findDbReservation(reservation.getId());
 		dbReservation.setPlaces(reservation.getPlaces());
+		dbReservation.setState(reservation.getState());
+		this.em.persist(dbReservation);
 	}
 
 	@Override

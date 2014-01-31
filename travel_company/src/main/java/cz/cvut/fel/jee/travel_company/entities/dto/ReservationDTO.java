@@ -1,15 +1,18 @@
 package cz.cvut.fel.jee.travel_company.entities.dto;
 
 import cz.cvut.fel.jee.travel_company.entities.Reservation;
+import cz.cvut.fel.jee.travel_company.entities.ReservationState;
 
 public class ReservationDTO {
 	
 	private Long id;
 	private Integer places;
 	private VacationDTO vacation;
+	private ReservationState state;
 	
 	public ReservationDTO() {
 		super();
+		this.state = ReservationState.NEW;
 	}
 
 	public ReservationDTO(Reservation reservation) {
@@ -17,6 +20,7 @@ public class ReservationDTO {
 		this.id = reservation.getId();
 		this.places = reservation.getPlaces();
 		this.vacation = new VacationDTO(reservation.getVacation());
+		this.state = reservation.getState();
 	}
 
 	public Long getId() {
@@ -41,6 +45,14 @@ public class ReservationDTO {
 
 	public void setVacation(VacationDTO vacation) {
 		this.vacation = vacation;
+	}
+
+	public ReservationState getState() {
+		return state;
+	}
+
+	public void setState(ReservationState state) {
+		this.state = state;
 	}
 
 }

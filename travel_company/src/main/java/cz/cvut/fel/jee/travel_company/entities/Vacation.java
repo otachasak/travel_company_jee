@@ -1,6 +1,7 @@
 package cz.cvut.fel.jee.travel_company.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Collection;
 
@@ -32,6 +33,8 @@ public class Vacation extends BaseEntity {
 	@Min(1)
 	private Integer places;
 	
+	private BigDecimal price;
+	
 	@OneToMany
 	private Collection<Reservation> reservations;
 
@@ -45,6 +48,7 @@ public class Vacation extends BaseEntity {
 		this.endDate = new Date(vacation.getEndDate().getTime());
 		this.destination = new Destination(vacation.getDestination());
 		this.places = vacation.getPlaces();
+		this.price = vacation.getPrice();
 	}
 
 	public Date getStartDate() {
@@ -85,6 +89,14 @@ public class Vacation extends BaseEntity {
 
 	public void setReservations(Collection<Reservation> reservations) {
 		this.reservations = reservations;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
    
 }

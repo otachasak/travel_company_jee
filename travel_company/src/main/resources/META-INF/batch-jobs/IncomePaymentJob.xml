@@ -1,0 +1,9 @@
+<job id="IncomePaymentJob" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+    <step id="process">
+        <chunk item-count="5">
+            <reader ref="incomePaymentReader"/>
+            <processor ref="paymentItemProcessor"/>
+            <writer ref="paymentItemWriter"/>
+        </chunk>
+    </step>
+</job>

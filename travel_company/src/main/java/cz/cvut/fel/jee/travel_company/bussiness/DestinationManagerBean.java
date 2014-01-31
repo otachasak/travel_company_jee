@@ -29,15 +29,16 @@ public class DestinationManagerBean {
 	}
 	
 	public void addDestination(DestinationDTO destination){
-		this.destinationDao.addDestination(destination);
+		this.destinationDao.addDestination(new Destination(destination));
 	}
 	
 	public void updateDestination(DestinationDTO destination) throws EntityNotFoundException{
-		this.destinationDao.updateDatination(destination);
+		this.destinationDao.updateDatination(new Destination(destination));
 	}
 	
 	public DestinationDTO findDestination(Long id) throws EntityNotFoundException{
-		return this.destinationDao.findDestination(id);
+		Destination dbDestination = this.destinationDao.findDestination(id);
+		return new DestinationDTO(dbDestination);
 	}
 	
 	public void deleteDestination(Long id) throws EntityNotFoundException{

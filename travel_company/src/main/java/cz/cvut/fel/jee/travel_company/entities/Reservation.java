@@ -24,14 +24,19 @@ public class Reservation extends BaseEntity {
 	@ManyToOne
 	@NotNull
 	private Vacation vacation;
+	
+	@Enumerated(EnumType.STRING)
+	private ReservationState state;
 
 	public Reservation() {
 		super();
+		this.state = ReservationState.NEW;
 	}
 	
 	public Reservation(ReservationDTO reservation){
 		super();
 		this.places = reservation.getPlaces();
+		this.state = reservation.getState();
 	}
 
 	public Integer getPlaces() {
@@ -48,6 +53,14 @@ public class Reservation extends BaseEntity {
 
 	public void setVacation(Vacation vacation) {
 		this.vacation = vacation;
+	}
+
+	public ReservationState getState() {
+		return state;
+	}
+
+	public void setState(ReservationState state) {
+		this.state = state;
 	}
    
 }

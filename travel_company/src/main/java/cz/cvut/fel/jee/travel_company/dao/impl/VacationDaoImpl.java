@@ -2,14 +2,10 @@ package cz.cvut.fel.jee.travel_company.dao.impl;
 
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 import cz.cvut.fel.jee.travel_company.entities.Vacation;
-import cz.cvut.fel.jee.travel_company.entities.dto.VacationDTO;
 import cz.cvut.fel.jee.travel_company.dao.VacationDao;
 import cz.cvut.fel.jee.travel_company.dao.impl.base.BaseDaoImpl;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.LockModeType;
 
 /**
  */
@@ -21,7 +17,7 @@ public class VacationDaoImpl extends BaseDaoImpl implements VacationDao {
     }
 
 	@Override
-	public void addVacation(VacationDTO vacation) {
+	public void addVacation(Vacation vacation) {
 		em.persist(vacation);
 	}
 
@@ -32,7 +28,7 @@ public class VacationDaoImpl extends BaseDaoImpl implements VacationDao {
 	}
 
 	@Override
-	public void updateVacation(VacationDTO vacation) throws EntityNotFoundException {
+	public void updateVacation(Vacation vacation) throws EntityNotFoundException {
 		Vacation dbVacation = this.findDbVacation(vacation.getId());
 		/*
 		 * TODO
