@@ -4,6 +4,7 @@ import cz.cvut.fel.jee.travel_company.dao.DestinationDao;
 import cz.cvut.fel.jee.travel_company.entities.Destination;
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 import cz.cvut.fel.jee.travel_company.entities.dto.DestinationDTO;
+import cz.cvut.fel.jee.travel_company.services.DestinationService;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -20,34 +21,21 @@ import java.util.logging.Level;
 @SessionScoped
 public class DestinationsBB extends BasicBB {
     @Inject
-    DestinationDao destinationDao;
+    DestinationService destinationService;
+
     private String newDestinationName;
 
     public List<DestinationDTO> getAllDestinations() {
-
-        List<Destination> destinations = destinationDao.findAllDestinations();
-
-        List<DestinationDTO> destinationDTOs = new ArrayList<>(destinations.size());
-        for (Destination destination : destinations) {
-            destinationDTOs.add(new DestinationDTO(destination));
-        }
-
-        return destinationDTOs;
+        return destinationService.findAllDestinations();
     }
 
     public void addDestination() {
-        Destination newDestination = new Destination();
-        newDestination.setName(newDestinationName);
-        destinationDao.addDestination(newDestination);
+        destinationService.addDestination(newDestinationName);
         newDestinationName = "";
     }
 
     public void deleteDestination(long destinationId) {
-        try {
-            destinationDao.deleteDestination(destinationId);
-        } catch (EntityNotFoundException e) {
-            logger.log(Level.WARNING, "Unable to delete destination.", e);
-        }
+        destinationService.deleteDestination(destinationId);
     }
 
     public String getNewDestinationName() {

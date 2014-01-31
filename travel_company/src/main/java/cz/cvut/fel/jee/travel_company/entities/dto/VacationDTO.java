@@ -100,6 +100,15 @@ public class VacationDTO {
 		this.price = price;
 	}
 
+
+    public String getDestinationName() {
+        return destination.getName();
+    }
+
+    public int getNumberOfReservations() {
+        return reservations.size();
+    }
+
     @Override
     public String toString() {
         return "VacationDTO {destination:" + getDestination()

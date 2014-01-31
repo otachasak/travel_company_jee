@@ -9,32 +9,41 @@
     <ui:composition template="/WEB-INF/templates/main-template.xhtml">
         <ui:param name="pageTitle" value="#{msg.title_vacations}"/>
         <ui:define name="content">
-            <h:dataTable value="#{vacationsBB.allVacations}" var="vacation" border="1">
-                <h:column>
-                    <f:facet name="header">#{msg.destination}</f:facet>
-                    <h:outputText value="#{vacation.destinationName}"/>
-                </h:column>
+            <h:form>
+                <h:dataTable value="#{vacationsBB.allVacations}" var="vacation" border="1">
+                    <h:column>
+                        <f:facet name="header">#{msg.destination}</f:facet>
+                        <h:outputText value="#{vacation.destinationName}"/>
+                    </h:column>
 
-                <h:column>
-                    <f:facet name="header">#{msg.vacation_start_date}</f:facet>
-                    <h:outputText value="#{vacation.startDate}"/>
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg.vacation_start_date}</f:facet>
+                        <h:outputText value="#{vacation.startDate}"/>
+                    </h:column>
 
-                <h:column>
-                    <f:facet name="header">#{msg.vacation_end_date}</f:facet>
-                    <h:outputText value="#{vacation.endDate}"/>
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg.vacation_end_date}</f:facet>
+                        <h:outputText value="#{vacation.endDate}"/>
+                    </h:column>
 
-                <h:column>
-                    <f:facet name="header">#{msg.vacation_number_of_reservations}</f:facet>
-                    <h:outputText value="#{vacation.numberOfReservations}"/>
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg.vacation_number_of_reservations}</f:facet>
+                        <h:outputText value="#{vacation.numberOfReservations}"/>
+                    </h:column>
 
-                <h:column>
-                    <f:facet name="header">#{msg.vacation_places}</f:facet>
-                    <h:outputText value="#{vacation.places}"/>
-                </h:column>
-            </h:dataTable>
+                    <h:column>
+                        <f:facet name="header">#{msg.vacation_places}</f:facet>
+                        <h:outputText value="#{vacation.places}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{msg.vacation_delete}</f:facet>
+                        <h:commandLink value="#{msg.destination_delete}"
+                                       action="#{vacationsBB.deleteVacation(vacation.id)}"/>
+                    </h:column>
+
+                </h:dataTable>
+            </h:form>
             <h:form>
                 <h:panelGrid id="grid" columns="1">
                     <h:panelGroup>
@@ -70,7 +79,8 @@
                         </h:inputText>
                         <h:message for="places" errorClass="error"/>
                     </h:panelGroup>
-                    <h:commandButton id="submit" value="#{msg.vacation_add}" type="submit" action="#{vacationsBB.addVacation}"/>
+                    <h:commandButton id="submit" value="#{msg.vacation_add}" type="submit"
+                                     action="#{vacationsBB.addVacation}"/>
                 </h:panelGrid>
             </h:form>
         </ui:define>

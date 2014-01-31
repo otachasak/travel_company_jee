@@ -32,9 +32,13 @@ public class DestinationDaoImpl extends BaseDaoImpl implements DestinationDao {
 	}
 
 	@Override
-	public Destination findDestination(Long id) throws EntityNotFoundException {
-		Destination destination = this.findDbDestination(id);
-		return destination;
+	public Destination findDestination(Long id) {
+        try {
+            Destination destination = this.findDbDestination(id);
+            return destination;
+        } catch (EntityNotFoundException e) {
+            return null;
+        }
 	}
 
 	@Override
