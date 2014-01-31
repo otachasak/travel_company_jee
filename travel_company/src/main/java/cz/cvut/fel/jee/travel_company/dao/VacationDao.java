@@ -20,7 +20,7 @@ public interface VacationDao {
     
     /**
      * Inserts vacation into DB
-     * @param vacation - vacationDTO to be added
+     * @param vacation - vacation to be added
      */
     public void addVacation(Vacation vacation);
     

@@ -99,4 +99,13 @@ public class VacationDTO {
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
+
+    @Override
+    public String toString() {
+        return "VacationDTO {destination:" + getDestination()
+                + ", startDate:" + getStartDate()
+                + ", endDate:" + getEndDate()
+                + ", places:" + getPlaces() + "}";
+    }
+
 }

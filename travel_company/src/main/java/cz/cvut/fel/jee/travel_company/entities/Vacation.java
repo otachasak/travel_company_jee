@@ -41,7 +41,7 @@ public class Vacation extends BaseEntity {
 	public Vacation() {
 		super();
 	}
-	
+
 	public Vacation(VacationDTO vacation) {
 		super();
 		this.startDate = new Date(vacation.getStartDate().getTime());

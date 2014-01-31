@@ -7,8 +7,13 @@ import cz.cvut.fel.jee.travel_company.dao.impl.base.BaseDaoImpl;
 
 import java.util.List;
 
+import javax.ejb.Stateful;
+import javax.inject.Named;
+
 /**
  */
+@Named
+@Stateful
 public class VacationDaoImpl extends BaseDaoImpl implements VacationDao {
     @Override
     public List<Vacation> findAllVacations() {
