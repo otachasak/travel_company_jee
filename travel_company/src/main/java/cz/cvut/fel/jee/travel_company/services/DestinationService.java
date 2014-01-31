@@ -25,15 +25,8 @@ public class DestinationService extends BasicService {
     DestinationDao destinationDao;
 
     public List<DestinationDTO> findAllDestinations() {
-
         List<Destination> destinations = destinationDao.findAllDestinations();
-
-        List<DestinationDTO> destinationDTOs = new ArrayList<>(destinations.size());
-        for (Destination destination : destinations) {
-            destinationDTOs.add(new DestinationDTO(destination));
-        }
-
-        return destinationDTOs;
+        return originalToDTos(Destination.class, DestinationDTO.class, destinations);
     }
 
     public void addDestination(String newDestinationName) {

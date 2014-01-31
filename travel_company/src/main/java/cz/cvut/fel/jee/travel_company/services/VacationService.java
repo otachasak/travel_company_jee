@@ -5,6 +5,7 @@ import cz.cvut.fel.jee.travel_company.dao.VacationDao;
 import cz.cvut.fel.jee.travel_company.entities.Destination;
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 import cz.cvut.fel.jee.travel_company.entities.Vacation;
+import cz.cvut.fel.jee.travel_company.entities.dto.DestinationDTO;
 import cz.cvut.fel.jee.travel_company.entities.dto.VacationDTO;
 
 import javax.ejb.Stateful;
@@ -32,13 +33,7 @@ public class VacationService extends BasicService {
 
     public List<VacationDTO> getAllVacations() {
         List<Vacation> vacations = vacationDao.findAllVacations();
-
-        List<VacationDTO> vacationDTOs = new ArrayList<>(vacations.size());
-        for(Vacation vacation : vacations) {
-            vacationDTOs.add(new VacationDTO(vacation));
-        }
-
-        return vacationDTOs;
+        return originalToDTos(Vacation.class, VacationDTO.class, vacations);
     }
 
     public VacationDTO findVacationById(long vacationId) {
