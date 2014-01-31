@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:body>
+    <ui:composition template="/WEB-INF/templates/main-template.xhtml">
+        <ui:param name="pageTitle" value="#{msg.reservation_title}"/>
+        <ui:define name="content">
+            <h:form>
+                <h:panelGrid id="grid" columns="1">
+                    <h:panelGroup>
+                        <h:outputLabel value="#{msg.customer_title} "/>
+                        <h:selectOneMenu value="#{reservationsBB.allCustomers}">
+                            <f:selectItems value="#{reservationsBB.selectedCustomer}"/>
+                        </h:selectOneMenu>
+                    </h:panelGroup>
+
+                    <h:panelGroup>
+                        <h:outputLabel value="#{msg.title_vacations} "/>
+                        <h:selectOneMenu value="#{reservationsBB.allVacations}">
+                            <f:selectItems value="#{reservationsBB.selectedVacation}"/>
+                        </h:selectOneMenu>
+                    </h:panelGroup>
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
+

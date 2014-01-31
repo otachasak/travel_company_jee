@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Collection;
+import java.util.Collections;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -84,6 +85,9 @@ public class Vacation extends BaseEntity {
 	}
 
 	public Collection<Reservation> getReservations() {
+        if(reservations == null) {
+            return Collections.EMPTY_SET;
+        }
 		return reservations;
 	}
 
@@ -98,5 +102,28 @@ public class Vacation extends BaseEntity {
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
-   
+
+    public int totalReservations() {
+        int reservationsCount = 0;
+        for(Reservation r : getReservations()) {
+            reservationsCount += r.getPlaces();
+        }
+        return reservationsCount;
+    }
+
+    @Transient
+    public boolean makeReservation(Customer c, int places) {
+        if(totalReservations() < getPlaces() + places) {
+            Reservation r = new Reservation();
+            r.setCustomer(c);
+            r.setVacation(this);
+            r.setPlaces(places);
+
+            getReservations().add(r);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

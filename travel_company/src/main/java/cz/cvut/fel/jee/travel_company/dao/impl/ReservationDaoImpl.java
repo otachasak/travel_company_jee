@@ -16,7 +16,17 @@ public class ReservationDaoImpl extends BaseDaoImpl implements ReservationDao {
 		return reservations;
 	}
 
-	@Override
+    public List<Reservation> findAllReservationsForCustomer(long customerId) {
+        List<Reservation> reservations = em.createQuery("select res from Reservation res " +
+                "where res.customer.id = :customerId")
+                .setParameter("customerId", customerId)
+                .getResultList();
+        return reservations;
+    }
+
+
+
+    @Override
 	public void addReservation(Reservation reservation) {
 		this.em.persist(reservation);
 	}

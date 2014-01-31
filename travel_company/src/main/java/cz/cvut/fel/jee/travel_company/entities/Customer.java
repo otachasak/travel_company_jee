@@ -2,9 +2,12 @@ package cz.cvut.fel.jee.travel_company.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import cz.cvut.fel.jee.travel_company.entities.dto.CustomerDTO;
+
+import java.util.List;
 
 /**
  * Implementation of Customer Entity.
@@ -18,6 +21,9 @@ public class Customer extends BaseEntity {
     private String name;
 
     private String email;
+
+    @OneToMany
+    private List<Reservation> reservations;
 
     public Customer(CustomerDTO customer) {
 		super();

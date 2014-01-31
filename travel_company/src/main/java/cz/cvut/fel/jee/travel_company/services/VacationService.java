@@ -1,10 +1,13 @@
 package cz.cvut.fel.jee.travel_company.services;
 
+import cz.cvut.fel.jee.travel_company.dao.CustomerDao;
 import cz.cvut.fel.jee.travel_company.dao.DestinationDao;
 import cz.cvut.fel.jee.travel_company.dao.VacationDao;
+import cz.cvut.fel.jee.travel_company.entities.Customer;
 import cz.cvut.fel.jee.travel_company.entities.Destination;
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 import cz.cvut.fel.jee.travel_company.entities.Vacation;
+import cz.cvut.fel.jee.travel_company.entities.dto.CustomerDTO;
 import cz.cvut.fel.jee.travel_company.entities.dto.DestinationDTO;
 import cz.cvut.fel.jee.travel_company.entities.dto.VacationDTO;
 
@@ -26,10 +29,10 @@ public class VacationService extends BasicService {
 
     @Inject
     private VacationDao vacationDao;
-
     @Inject
     private DestinationDao destinationDao;
-
+    @Inject
+    private CustomerDao customerDao;
 
     public List<VacationDTO> getAllVacations() {
         List<Vacation> vacations = vacationDao.findAllVacations();
@@ -71,5 +74,16 @@ public class VacationService extends BasicService {
         } catch (EntityNotFoundException e) {
             logger.log(Level.WARNING, "Unable to delete vacation.", e);
         }
+    }
+
+    public void makeReservation(CustomerDTO customerDTO, VacationDTO vacationDTO, int places) {
+        try {
+            Customer customer = customerDao.findCustomer(customerDTO.getId());
+            Vacation vacation = vacationDao.findVacation(vacationDTO.getId());
+            vacation.makeReservation(customer, places);
+        } catch (Exception e) {
+            logger.log(Level.WARNING, "Unable to make reservation.", e);
+        }
+
     }
 }

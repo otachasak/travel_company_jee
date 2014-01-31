@@ -28,6 +28,9 @@ public class Reservation extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	private ReservationState state;
 
+    @ManyToOne
+    private Customer customer;
+
 	public Reservation() {
 		super();
 		this.state = ReservationState.NEW;
@@ -62,5 +65,12 @@ public class Reservation extends BaseEntity {
 	public void setState(ReservationState state) {
 		this.state = state;
 	}
-   
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 }
