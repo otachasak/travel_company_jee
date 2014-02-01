@@ -3,6 +3,7 @@ package cz.cvut.fel.jee.travel_company.entities;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -36,7 +37,7 @@ public class Vacation extends BaseEntity {
 	
 	private BigDecimal price;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "vacation")
 	private Collection<Reservation> reservations;
 
 	public Vacation() {
@@ -86,7 +87,7 @@ public class Vacation extends BaseEntity {
 
 	public Collection<Reservation> getReservations() {
         if(reservations == null) {
-            return Collections.EMPTY_SET;
+            return new ArrayList<>();
         }
 		return reservations;
 	}

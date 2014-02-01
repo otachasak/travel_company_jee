@@ -1,5 +1,6 @@
 package cz.cvut.fel.jee.travel_company.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -22,7 +23,7 @@ public class Customer extends BaseEntity {
 
     private String email;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private List<Reservation> reservations;
 
     public Customer(CustomerDTO customer) {

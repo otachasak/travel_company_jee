@@ -53,12 +53,12 @@ public class ReservationService extends BasicService {
         return originalToDTos(Reservation.class, ReservationDTO.class, reservations);
     }
 
-    public void createReservation(Long customerId, Long vacationId, Integer places) {
+    public boolean createReservation(Long customerId, Long vacationId, Integer places) {
         try {
             Customer customer = customerDao.findCustomer(customerId);
             Vacation vacation = vacationDao.findVacation(vacationId);
 
-            if(vacation.totalReservations() < (vacation.getPlaces() + places)) {
+            if((vacation.totalReservations()+ places) < vacation.getPlaces()) {
                 Reservation r = new Reservation();
                 r.setCustomer(customer);
                 r.setVacation(vacation);
@@ -66,10 +66,14 @@ public class ReservationService extends BasicService {
                 reservationDao.addReservation(r);
                 vacation.getReservations().add(r);
                 customer.getReservations().add(r);
+                vacationDao.updateVacation(vacation);
+                customerDao.updateCustomer(customer);
+                return true;
             }
         } catch(Exception e) {
-            logger.log(Level.WARNING, "Unable to create reservation.", e);
+            logger.log(Level.SEVERE, "Unable to create reservation.", e);
         }
+        return false;
     }
 
     public void deleteReservation(Long reservationId) {

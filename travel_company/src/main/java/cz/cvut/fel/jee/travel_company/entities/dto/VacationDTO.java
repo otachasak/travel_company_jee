@@ -27,6 +27,8 @@ public class VacationDTO {
     
     private BigDecimal price;
 
+    private int reservationsCount = 0;
+
     public VacationDTO() {
 		super();
 	}
@@ -38,9 +40,10 @@ public class VacationDTO {
         this.setEndDate(srcVacation.getEndDate());
         this.setPlaces(srcVacation.getPlaces());
         this.reservations = new ArrayList<>();
-//        for(Reservation srcReservation : srcVacation.getReservations()){
+        for(Reservation srcReservation : srcVacation.getReservations()){
+            reservationsCount += srcReservation.getPlaces();
 //        	this.reservations.add(new ReservationDTO(srcReservation));
-//        }
+        }
         this.price = srcVacation.getPrice();
     }
 
@@ -106,10 +109,6 @@ public class VacationDTO {
     }
 
     public int getNumberOfReservations() {
-        int reservationsCount = 0;
-        for(ReservationDTO r : getReservations()) {
-            reservationsCount += r.getPlaces();
-        }
         return reservationsCount;
     }
 

@@ -23,4 +23,12 @@ public abstract class BaseEntity implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public boolean equals(Object o) {
+        if(o instanceof BaseEntity) {
+            BaseEntity other = (BaseEntity)o;
+            return getId() == other.getId();
+        }
+        return super.equals(o);
+    }
 }

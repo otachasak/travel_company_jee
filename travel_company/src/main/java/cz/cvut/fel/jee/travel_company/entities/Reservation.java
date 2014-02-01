@@ -21,14 +21,14 @@ public class Reservation extends BaseEntity {
 	@Min(1)
 	private Integer places;
 	
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@NotNull
 	private Vacation vacation;
 	
 	@Enumerated(EnumType.STRING)
 	private ReservationState state;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Customer customer;
 
 	public Reservation() {

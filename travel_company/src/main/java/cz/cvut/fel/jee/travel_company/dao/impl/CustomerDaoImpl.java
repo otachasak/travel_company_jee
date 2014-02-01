@@ -6,6 +6,11 @@ import cz.cvut.fel.jee.travel_company.dao.impl.base.BaseDaoImpl;
 import cz.cvut.fel.jee.travel_company.entities.Customer;
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 
+import javax.ejb.Stateful;
+import javax.inject.Named;
+
+@Named
+@Stateful
 public class CustomerDaoImpl extends BaseDaoImpl implements CustomerDao{
 
 	@Override

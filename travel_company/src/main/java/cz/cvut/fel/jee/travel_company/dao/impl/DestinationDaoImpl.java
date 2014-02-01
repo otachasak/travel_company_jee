@@ -21,7 +21,7 @@ public class DestinationDaoImpl extends BaseDaoImpl implements DestinationDao {
 
 	@Override
 	public void addDestination(Destination destination) {
-		this.em.persist(destination);
+		em.persist(destination);
 	}
 
 	@Override
