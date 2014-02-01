@@ -2,10 +2,7 @@ package cz.cvut.fel.jee.travel_company.services;
 
 import cz.cvut.fel.jee.travel_company.dao.CustomerDao;
 import cz.cvut.fel.jee.travel_company.dao.VacationDao;
-import cz.cvut.fel.jee.travel_company.entities.Customer;
-import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
-import cz.cvut.fel.jee.travel_company.entities.Reservation;
-import cz.cvut.fel.jee.travel_company.entities.Vacation;
+import cz.cvut.fel.jee.travel_company.entities.*;
 import cz.cvut.fel.jee.travel_company.entities.dto.ReservationDTO;
 import cz.cvut.fel.jee.travel_company.dao.ReservationDao;
 
@@ -63,6 +60,7 @@ public class ReservationService extends BasicService {
                 r.setCustomer(customer);
                 r.setVacation(vacation);
                 r.setPlaces(places);
+                r.setState(ReservationState.NEW);
                 reservationDao.addReservation(r);
                 vacation.getReservations().add(r);
                 customer.getReservations().add(r);
@@ -83,4 +81,24 @@ public class ReservationService extends BasicService {
             logger.log(Level.WARNING, "Unable to delete reservation.", e);
         }
     }
+
+
+    public void markAsPayed(long reservationId) {
+        try {
+            Reservation reservation = reservationDao.findReservation(reservationId);
+            reservation.setState(ReservationState.PAID);
+        } catch (EntityNotFoundException e) {
+            logger.log(Level.WARNING, "Unable to mark reservation as payed.", e);
+        }
+    }
+
+    public void markAsNew(long reservationId) {
+        try {
+            Reservation reservation = reservationDao.findReservation(reservationId);
+            reservation.setState(ReservationState.NEW);
+        } catch (EntityNotFoundException e) {
+            logger.log(Level.WARNING, "Unable to mark reservation as new.", e);
+        }
+    }
+
 }

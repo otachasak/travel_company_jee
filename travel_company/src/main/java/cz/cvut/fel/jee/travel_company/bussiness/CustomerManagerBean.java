@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import cz.cvut.fel.jee.travel_company.dao.CustomerDao;
 import cz.cvut.fel.jee.travel_company.dao.impl.CustomerDaoImpl;
 import cz.cvut.fel.jee.travel_company.entities.Customer;
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
@@ -15,11 +16,11 @@ import cz.cvut.fel.jee.travel_company.entities.dto.CustomerDTO;
 public class CustomerManagerBean {
 	
 	@Inject
-	private CustomerDaoImpl customerDao;
+	private CustomerDao customerDao;
 	
 	public List<CustomerDTO> getAllCustomers(){
 		List<Customer> dbCustomers = this.customerDao.findAllCustomers();
-		List<CustomerDTO> customers = new ArrayList<CustomerDTO>();
+		List<CustomerDTO> customers = new ArrayList<>();
 		for(Customer dbCustomer : dbCustomers){
 			customers.add(new CustomerDTO(dbCustomer));
 		}

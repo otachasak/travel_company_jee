@@ -68,6 +68,17 @@ public class ReservationsBB extends BasicBB {
         performFiltering();
     }
 
+    public void markAsPayed(long reservationId) {
+        reservationService.markAsPayed(reservationId);
+        performFiltering();
+    }
+
+    public void markAsNew(long reservationId) {
+        reservationService.markAsNew(reservationId);
+        performFiltering();
+    }
+
+
     public void deleteReservation(Long reservationId) {
         reservationService.deleteReservation(reservationId);
         performFiltering();

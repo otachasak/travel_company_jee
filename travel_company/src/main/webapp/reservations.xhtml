@@ -52,6 +52,11 @@
                     </h:column>
 
                     <h:column>
+                        <f:facet name="header">State</f:facet>
+                        <h:outputText value="#{reservation.state}"/>
+                    </h:column>
+
+                    <h:column>
                         <f:facet name="header">#{msg.customer_name}</f:facet>
                         <h:outputText value="#{reservation.customer.name}"/>
                     </h:column>
@@ -79,6 +84,18 @@
                     <h:column>
                         <f:facet name="header">Total places</f:facet>
                         <h:outputText value="#{reservation.vacation.numberOfReservations}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Mark As New</f:facet>
+                        <h:commandLink value="Mask As New"
+                                       action="#{reservationsBB.markAsNew(reservation.id)}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Mark As Payed</f:facet>
+                        <h:commandLink value="Mark As Payed"
+                                       action="#{reservationsBB.markAsPayed(reservation.id)}"/>
                     </h:column>
 
                     <h:column>
