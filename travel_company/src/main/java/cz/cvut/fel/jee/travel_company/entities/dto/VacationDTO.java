@@ -37,10 +37,10 @@ public class VacationDTO {
         this.setStartDate(srcVacation.getStartDate());
         this.setEndDate(srcVacation.getEndDate());
         this.setPlaces(srcVacation.getPlaces());
-        this.reservations = new ArrayList<ReservationDTO>();
-        for(Reservation srcReservation : srcVacation.getReservations()){
-        	this.reservations.add(new ReservationDTO(srcReservation));
-        }
+        this.reservations = new ArrayList<>();
+//        for(Reservation srcReservation : srcVacation.getReservations()){
+//        	this.reservations.add(new ReservationDTO(srcReservation));
+//        }
         this.price = srcVacation.getPrice();
     }
 

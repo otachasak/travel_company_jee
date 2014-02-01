@@ -33,7 +33,9 @@ public class VacationService extends BasicService {
 
     public List<VacationDTO> getAllVacations() {
         List<Vacation> vacations = vacationDao.findAllVacations();
-        return originalToDTos(Vacation.class, VacationDTO.class, vacations);
+        List<VacationDTO> ret = originalToDTos(Vacation.class, VacationDTO.class, vacations);
+        logger.info("ret.size()=" + ret.size());
+        return ret;
     }
 
     public VacationDTO findVacationById(long vacationId) {

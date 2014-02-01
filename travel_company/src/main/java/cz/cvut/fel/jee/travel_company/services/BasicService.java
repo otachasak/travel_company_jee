@@ -22,6 +22,7 @@ public abstract class BasicService implements Serializable {
                 dtos.add(dto);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
 

@@ -12,7 +12,6 @@ public class DestinationDTO {
 	}
 
 	public DestinationDTO(Destination destination) {
-		super();
 		this.name = destination.getName();
 		this.id = destination.getId();
 	}

@@ -74,6 +74,7 @@ public class ReservationsBB extends BasicBB {
     }
 
     public List<String> getAllCustomers() {
+        nameToCustomer.clear();
         List<CustomerDTO> customers = customerService.getAllCustomers();
         List<String> result = convertToString(customers, nameToCustomer, new ToString<CustomerDTO>() {
             @Override
@@ -81,14 +82,14 @@ public class ReservationsBB extends BasicBB {
                 return customerDTO.getName() + ", " + customerDTO.getEmail();
             }
         });
-        result.add("");
-        nameToCustomer.put("", null);
+        result.add("X");
+        nameToCustomer.put("X", null);
         return result;
     }
 
     public String getSelectedCustomer() {
         if (selectedCustomer == null) {
-            return "";
+            return "X";
         }
         return selectedCustomer.getName() + ", " + selectedCustomer.getEmail();
     }
@@ -98,6 +99,7 @@ public class ReservationsBB extends BasicBB {
     }
 
     public List<String> getAllVacations() {
+        nameToVacation.clear();
         List<VacationDTO> vacations = vacationService.getAllVacations();
         List<String> result = convertToString(vacations, nameToVacation, new ToString<VacationDTO>() {
             @Override
@@ -106,14 +108,14 @@ public class ReservationsBB extends BasicBB {
                         + vacationDTO.getEndDate() + ", " + vacationDTO.getId();
             }
         });
-        result.add("");
-        nameToCustomer.put("", null);
+        result.add("X");
+        nameToVacation.put("X", null);
         return result;
     }
 
     public String getSelectedVacation() {
         if (selectedVacation == null) {
-            return "";
+            return "X";
         }
         String label = selectedVacation.getDestinationName() + ", " + selectedVacation.getStartDate() + " - "
                 + selectedVacation.getEndDate() + ", " + selectedVacation.getId();
