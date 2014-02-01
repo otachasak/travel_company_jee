@@ -8,14 +8,11 @@ import cz.cvut.fel.jee.travel_company.entities.Destination;
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 import cz.cvut.fel.jee.travel_company.entities.Vacation;
 import cz.cvut.fel.jee.travel_company.entities.dto.CustomerDTO;
-import cz.cvut.fel.jee.travel_company.entities.dto.DestinationDTO;
 import cz.cvut.fel.jee.travel_company.entities.dto.VacationDTO;
 
-import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -74,16 +71,5 @@ public class VacationService extends BasicService {
         } catch (EntityNotFoundException e) {
             logger.log(Level.WARNING, "Unable to delete vacation.", e);
         }
-    }
-
-    public void makeReservation(CustomerDTO customerDTO, VacationDTO vacationDTO, int places) {
-        try {
-            Customer customer = customerDao.findCustomer(customerDTO.getId());
-            Vacation vacation = vacationDao.findVacation(vacationDTO.getId());
-            vacation.makeReservation(customer, places);
-        } catch (Exception e) {
-            logger.log(Level.WARNING, "Unable to make reservation.", e);
-        }
-
     }
 }

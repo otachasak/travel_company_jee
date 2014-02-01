@@ -9,6 +9,7 @@ public class ReservationDTO {
 	private Integer places;
 	private VacationDTO vacation;
 	private ReservationState state;
+    private CustomerDTO customer;
 	
 	public ReservationDTO() {
 		super();
@@ -21,6 +22,7 @@ public class ReservationDTO {
 		this.places = reservation.getPlaces();
 		this.vacation = new VacationDTO(reservation.getVacation());
 		this.state = reservation.getState();
+        this.customer = new CustomerDTO(reservation.getCustomer());
 	}
 
 	public Long getId() {
@@ -55,4 +57,11 @@ public class ReservationDTO {
 		this.state = state;
 	}
 
+    public CustomerDTO getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CustomerDTO customer) {
+        this.customer = customer;
+    }
 }

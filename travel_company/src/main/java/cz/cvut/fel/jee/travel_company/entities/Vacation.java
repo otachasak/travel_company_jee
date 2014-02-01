@@ -110,20 +110,4 @@ public class Vacation extends BaseEntity {
         }
         return reservationsCount;
     }
-
-    @Transient
-    public boolean makeReservation(Customer c, int places) {
-        if(totalReservations() < getPlaces() + places) {
-            Reservation r = new Reservation();
-            r.setCustomer(c);
-            r.setVacation(this);
-            r.setPlaces(places);
-
-            getReservations().add(r);
-
-            return true;
-        } else {
-            return false;
-        }
-    }
 }

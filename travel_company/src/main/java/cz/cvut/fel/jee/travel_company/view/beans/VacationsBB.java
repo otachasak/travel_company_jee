@@ -1,5 +1,6 @@
 package cz.cvut.fel.jee.travel_company.view.beans;
 
+import cz.cvut.fel.jee.travel_company.entities.dto.CustomerDTO;
 import cz.cvut.fel.jee.travel_company.entities.dto.DestinationDTO;
 import cz.cvut.fel.jee.travel_company.entities.dto.VacationDTO;
 import cz.cvut.fel.jee.travel_company.services.DestinationService;
@@ -50,11 +51,13 @@ public class VacationsBB extends BasicBB {
 
     public List<String> getAvailableDestinations() {
         List<DestinationDTO> destinations = destinationService.findAllDestinations();
-        List<String> result = new ArrayList<>();
-        for(DestinationDTO destination : destinations) {
-            result.add(destination.getName());
-            nameToDestination.put(destination.getName(), destination);
-        }
+        List<String> result = convertToString(destinations, nameToDestination,
+                new ToString<DestinationDTO>() {
+            @Override
+            public String toString(DestinationDTO destinationDTO) {
+                return destinationDTO.getName();
+            }
+        });
         return result;
     }
 

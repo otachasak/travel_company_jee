@@ -24,6 +24,24 @@ public class ReservationDaoImpl extends BaseDaoImpl implements ReservationDao {
         return reservations;
     }
 
+    @Override
+    public List<Reservation> findAllReservationsOfVacation(long vacationId) {
+        List<Reservation> reservations = em.createQuery("select res from Reservation res " +
+                "where res.vacation.id = :vacationId")
+                .setParameter("vacationId", vacationId)
+                .getResultList();
+        return reservations;
+    }
+
+    public List<Reservation> findAllReservationsOfVacationForCustomer(long vacationId, long customerId) {
+        List<Reservation> reservations = em.createQuery("select res from Reservation res " +
+                "where res.vacation.id = :vacationId " +
+                "and res.customer.id = :customerId")
+                .setParameter("vacationId", vacationId)
+                .setParameter("customerId", customerId)
+                .getResultList();
+        return reservations;
+    }
 
 
     @Override

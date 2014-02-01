@@ -9,7 +9,11 @@ public interface ReservationDao {
 	
 	public List<Reservation> findAllReservations();
 
-    public List<Reservation> findAllReservationsForCustomer(long cusomerId);
+    public List<Reservation> findAllReservationsForCustomer(long customerId);
+
+    public List<Reservation> findAllReservationsOfVacation(long vacationId);
+
+    public List<Reservation> findAllReservationsOfVacationForCustomer(long vacationId, long customerId);
 
 	public Reservation findReservation(Long id) throws EntityNotFoundException;
 	public void addReservation(Reservation reservation);

@@ -106,7 +106,11 @@ public class VacationDTO {
     }
 
     public int getNumberOfReservations() {
-        return reservations.size();
+        int reservationsCount = 0;
+        for(ReservationDTO r : getReservations()) {
+            reservationsCount += r.getPlaces();
+        }
+        return reservationsCount;
     }
 
     @Override
