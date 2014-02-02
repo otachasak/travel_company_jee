@@ -1,5 +1,7 @@
 package cz.cvut.fel.jee.travel_company.rest;
 
+import java.util.Collection;
+
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -15,8 +17,6 @@ import javax.ws.rs.core.Response;
 import cz.cvut.fel.jee.travel_company.bussiness.CustomerManagerBean;
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 import cz.cvut.fel.jee.travel_company.entities.dto.CustomerDTO;
-
-import java.util.Collection;
 
 @Path("/customer")
 @Produces("application/json")

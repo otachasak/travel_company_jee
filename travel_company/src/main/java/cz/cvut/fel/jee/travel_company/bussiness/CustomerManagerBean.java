@@ -7,7 +7,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import cz.cvut.fel.jee.travel_company.dao.CustomerDao;
-import cz.cvut.fel.jee.travel_company.dao.impl.CustomerDaoImpl;
 import cz.cvut.fel.jee.travel_company.entities.Customer;
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 import cz.cvut.fel.jee.travel_company.entities.dto.CustomerDTO;
@@ -17,6 +16,9 @@ public class CustomerManagerBean {
 	
 	@Inject
 	private CustomerDao customerDao;
+	@Inject
+	private EmailSenderBean emailSenderBean;
+	
 	
 	public List<CustomerDTO> getAllCustomers(){
 		List<Customer> dbCustomers = this.customerDao.findAllCustomers();
@@ -29,6 +31,7 @@ public class CustomerManagerBean {
 	
 	public void addCustomer(CustomerDTO customer){
 		this.customerDao.addCustomer(new Customer(customer));
+		this.emailSenderBean.sendMessage(customer.getEmail(), "Registration", "You were added.");
 	}
 	
 	public CustomerDTO findCustomer(Long id) throws EntityNotFoundException{
