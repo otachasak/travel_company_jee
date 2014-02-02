@@ -61,4 +61,12 @@ public class CustomersBB extends BasicBB {
         modifiedCustomer.setEmail(email);
     }
 
+    public String getCustomerPassword() {
+        return modifiedCustomer.getPassword();
+    }
+
+    public void setCustomerPassword(String password) {
+        modifiedCustomer.setPassword(password);
+    }
+
 }

@@ -11,13 +11,17 @@
 <h:body>
     <p>
         <ui:composition>
-            <p>Logged user: XXX</p>
+            <p>Logged user: #{login.loginName}</p>
 
             <h:form>
-                <h:panelGroup id="logout">
-                    <h:outputText value="LogOut"/>
-                    <!--<h:commandLink value="logout" action=""/>-->
-                </h:panelGroup>
+                <p>
+                    <h:panelGroup id="logout">
+                        <h:commandLink value="logout" action="#{login.logout}"/>
+                    </h:panelGroup>
+                    <h:panelGroup id="login">
+                        <h:link outcome="login.xhtml" value="#{msg.login_title}"/>
+                    </h:panelGroup>
+                </p>
             </h:form>
         </ui:composition>
     </p>

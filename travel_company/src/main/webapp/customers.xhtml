@@ -47,7 +47,12 @@
                                      value="#{customersBB.customerEmail}" required="true"/>
                         <h:message for="customer-name" errorClass="error"/>
                     </h:panelGroup>
-
+                    <h:panelGroup>
+                        <h:outputLabel value="#{msg.customer_password} "/>
+                        <h:inputText label="#{msg.customer_password}" id="customer-password"
+                                     value="#{customersBB.customerPassword}" required="true"/>
+                        <h:message for="customer-password" errorClass="error"/>
+                    </h:panelGroup>
 
 
                     <h:commandButton id="submit" value="#{msg.customer_add}" type="submit"

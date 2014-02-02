@@ -8,10 +8,12 @@ import cz.cvut.fel.jee.travel_company.entities.Customer;
  *
  */
 public class CustomerDTO {
+    public static final String passwordHidden = "*******";
 	
 	private Long id;
 	private String name;
 	private String email;
+    private String password;
 	
 	public CustomerDTO() {
 		super();
@@ -22,6 +24,8 @@ public class CustomerDTO {
 		this.id = customer.getId();
 		this.name = customer.getName();
 		this.email = customer.getEmail();
+        //this.password = customer.getPassword();
+        this.password = passwordHidden; //:-)
 	}
 
 	public Long getId() {
@@ -47,5 +51,12 @@ public class CustomerDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

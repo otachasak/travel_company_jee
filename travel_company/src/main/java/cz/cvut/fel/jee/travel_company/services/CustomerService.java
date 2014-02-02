@@ -1,5 +1,6 @@
 package cz.cvut.fel.jee.travel_company.services;
 
+import cz.cvut.fel.jee.travel_company.bussiness.EmailSenderBean;
 import cz.cvut.fel.jee.travel_company.dao.CustomerDao;
 import cz.cvut.fel.jee.travel_company.entities.Customer;
 import cz.cvut.fel.jee.travel_company.entities.Destination;
@@ -28,6 +29,9 @@ public class CustomerService extends BasicService {
     @Inject
     private CustomerDao customerDao;
 
+    @Inject
+    private EmailSenderBean emailSenderBean;
+
     public List<CustomerDTO> getAllCustomers() {
         List<Customer> customers = customerDao.findAllCustomers();
         return originalToDTos(Customer.class, CustomerDTO.class, customers);
@@ -46,7 +50,9 @@ public class CustomerService extends BasicService {
         Customer customer = new Customer();
         customer.setName(newCustomer.getName());
         customer.setEmail(newCustomer.getEmail());
+        customer.setPassword(newCustomer.getPassword());
         customerDao.addCustomer(customer);
+        emailSenderBean.sendMessage(customer.getEmail(), "Registration", "You were added.");
     }
 
     public void updateCustomer(CustomerDTO customerDTO) {
@@ -54,6 +60,9 @@ public class CustomerService extends BasicService {
             Customer customer = customerDao.findCustomer(customerDTO.getId());
             customer.setName(customerDTO.getName());
             customer.setEmail(customerDTO.getEmail());
+            if(!CustomerDTO.passwordHidden.equals(customerDTO.getPassword())) {
+                customer.setPassword(customerDTO.getPassword());
+            }
             customerDao.updateCustomer(customer);
         } catch (EntityNotFoundException e) {
         }
