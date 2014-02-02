@@ -3,6 +3,7 @@ package cz.cvut.fel.jee.travel_company.entities.dto;
 import cz.cvut.fel.jee.travel_company.entities.Reservation;
 import cz.cvut.fel.jee.travel_company.entities.Vacation;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -11,8 +12,9 @@ import java.util.ArrayList;
 /**
  * DTO for Vacation Entity
  */
-public class VacationDTO {
-	
+public class VacationDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	private Long id;
 
     private Date startDate;
