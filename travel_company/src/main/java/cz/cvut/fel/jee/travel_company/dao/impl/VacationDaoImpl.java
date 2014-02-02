@@ -7,6 +7,8 @@ import cz.cvut.fel.jee.travel_company.dao.impl.base.BaseDaoImpl;
 
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateful;
 import javax.inject.Named;
 
@@ -16,23 +18,27 @@ import javax.inject.Named;
 @Stateful
 public class VacationDaoImpl extends BaseDaoImpl implements VacationDao {
     @Override
+    @PermitAll
     public List<Vacation> findAllVacations() {
         return em.createNamedQuery("Vacation.findAllVacations", Vacation.class)
                 .getResultList();
     }
 
 	@Override
+    @RolesAllowed({"root"})
 	public void addVacation(Vacation vacation) {
 		em.persist(vacation);
 	}
 
 	@Override
+    @PermitAll
 	public Vacation findVacation(Long id) throws EntityNotFoundException {
 		Vacation dbVacation = this.findDbVacation(id);
 		return dbVacation;
 	}
 
 	@Override
+    @RolesAllowed({"root"})
 	public void updateVacation(Vacation vacation) throws EntityNotFoundException {
 		Vacation dbVacation = this.findDbVacation(vacation.getId());
 		/*
@@ -42,6 +48,7 @@ public class VacationDaoImpl extends BaseDaoImpl implements VacationDao {
 	}
 
 	@Override
+    @RolesAllowed({"root"})
 	public void deleteVacation(Long id) throws EntityNotFoundException {
 		Vacation dbVacation = this.findDbVacation(id);
 		this.em.remove(dbVacation);

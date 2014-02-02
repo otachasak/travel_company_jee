@@ -10,6 +10,8 @@ import cz.cvut.fel.jee.travel_company.entities.Vacation;
 import cz.cvut.fel.jee.travel_company.entities.dto.CustomerDTO;
 import cz.cvut.fel.jee.travel_company.entities.dto.VacationDTO;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -31,6 +33,7 @@ public class VacationService extends BasicService {
     @Inject
     private CustomerDao customerDao;
 
+    @PermitAll
     public List<VacationDTO> getAllVacations() {
         List<Vacation> vacations = vacationDao.findAllVacations();
         List<VacationDTO> ret = originalToDTos(Vacation.class, VacationDTO.class, vacations);
@@ -38,6 +41,7 @@ public class VacationService extends BasicService {
         return ret;
     }
 
+    @PermitAll
     public VacationDTO findVacationById(long vacationId) {
         try {
             Vacation v = vacationDao.findVacation(vacationId);
@@ -47,6 +51,7 @@ public class VacationService extends BasicService {
         }
     }
 
+    @RolesAllowed({"root"})
     public void addVacation(VacationDTO vacationDTO) {
         Vacation vacation = new Vacation(vacationDTO);
         vacation.setDestination(destinationDao.findDestination(vacationDTO.getDestination().getId()));
@@ -54,6 +59,7 @@ public class VacationService extends BasicService {
         vacationDao.addVacation(vacation);
     }
 
+    @RolesAllowed({"root"})
     public void updateVacation(VacationDTO vacationDTO) {
         try {
             Vacation v = vacationDao.findVacation(vacationDTO.getId());
@@ -67,6 +73,7 @@ public class VacationService extends BasicService {
         }
     }
 
+    @RolesAllowed({"root"})
     public void deleteVacation(long vacationId) {
         try {
             vacationDao.deleteVacation(vacationId);

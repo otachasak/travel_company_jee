@@ -10,6 +10,8 @@ import cz.cvut.fel.jee.travel_company.entities.dto.CustomerDTO;
 import cz.cvut.fel.jee.travel_company.entities.dto.DestinationDTO;
 import cz.cvut.fel.jee.travel_company.entities.dto.VacationDTO;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -32,11 +34,13 @@ public class CustomerService extends BasicService {
     @Inject
     private EmailSenderBean emailSenderBean;
 
+    @PermitAll
     public List<CustomerDTO> getAllCustomers() {
         List<Customer> customers = customerDao.findAllCustomers();
         return originalToDTos(Customer.class, CustomerDTO.class, customers);
     }
 
+    @PermitAll
     public CustomerDTO getCustomerById(Long customerId) {
         try {
             Customer c = customerDao.findCustomer(customerId);
@@ -46,6 +50,7 @@ public class CustomerService extends BasicService {
         }
     }
 
+    @RolesAllowed({"root"})
     public void addCustomer(CustomerDTO newCustomer) {
         Customer customer = new Customer();
         customer.setName(newCustomer.getName());
@@ -55,6 +60,7 @@ public class CustomerService extends BasicService {
         emailSenderBean.sendMessage(customer.getEmail(), "Registration", "You were added.");
     }
 
+    @RolesAllowed({"root"})
     public void updateCustomer(CustomerDTO customerDTO) {
         try {
             Customer customer = customerDao.findCustomer(customerDTO.getId());
@@ -68,6 +74,7 @@ public class CustomerService extends BasicService {
         }
     }
 
+    @RolesAllowed({"root"})
     public void deleteCustomer(long customerId) {
         try {
             customerDao.deleteCustomer(customerId);
