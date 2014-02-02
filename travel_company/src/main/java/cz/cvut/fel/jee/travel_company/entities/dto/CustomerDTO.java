@@ -1,5 +1,7 @@
 package cz.cvut.fel.jee.travel_company.entities.dto;
 
+import java.io.Serializable;
+
 import cz.cvut.fel.jee.travel_company.entities.Customer;
 
 /**
@@ -7,9 +9,11 @@ import cz.cvut.fel.jee.travel_company.entities.Customer;
  * @author Ota
  *
  */
-public class CustomerDTO {
+
+public class CustomerDTO implements Serializable {
     public static final String passwordHidden = "*******";
-	
+	private static final long serialVersionUID = 1L;
+
 	private Long id;
 	private String name;
 	private String email;

@@ -1,8 +1,11 @@
 package cz.cvut.fel.jee.travel_company.entities.dto;
 
+import java.io.Serializable;
+
 import cz.cvut.fel.jee.travel_company.entities.Destination;
 
-public class DestinationDTO {
+public class DestinationDTO implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	private String name;
