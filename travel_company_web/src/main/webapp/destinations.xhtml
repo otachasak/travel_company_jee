@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:body>
+    <ui:composition template="/WEB-INF/templates/main-template.xhtml">
+        <ui:param name="pageTitle" value="#{msg.title_destination}"/>
+        <ui:define name="content">
+            <h:form>
+                <h:dataTable value="#{destinationsBB.allDestinations}" var="destination" border="1">
+                    <h:column>
+                        <f:facet name="header">#{msg.destination}</f:facet>
+                        <h:outputText value="#{destination.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg.destination_lon}</f:facet>
+                        <h:outputText value="#{destination.longtitude}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg.destination_lat}</f:facet>
+                        <h:outputText value="#{destination.latitude}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg.destination_delete}</f:facet>
+                        <h:commandLink value="#{msg.destination_delete}"
+                                       action="#{destinationsBB.deleteDestination(destination.id)}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+            <h:form>
+                <h:panelGroup>
+                    <h:outputLabel value="#{msg.destination_name} "/>
+                    <h:inputText label="#{msg.destination_name}" id="destination-name"
+                                 value="#{destinationsBB.newDestinationName}" required="true"/>
+                    <h:message for="destination-name" errorClass="error"/>
+                </h:panelGroup>
+                <h:commandButton id="submit" value="#{msg.destination_add}" action="#{destinationsBB.addDestination}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
+

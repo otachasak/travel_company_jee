@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:body>
+    <ui:composition template="/WEB-INF/templates/main-template.xhtml">
+        <ui:param name="pageTitle" value="#{msg.customer_title}"/>
+        <ui:define name="content">
+            <h:form>
+                <h:dataTable value="#{customersBB.allCustomers}" var="customer" border="1">
+                    <h:column>
+                        <f:facet name="header">#{msg.customer_name}</f:facet>
+                        <h:outputText value="#{customer.name}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{msg.customer_mail}</f:facet>
+                        <h:outputText value="#{customer.email}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{msg.customer_delete}</f:facet>
+                        <h:commandLink value="#{msg.customer_delete}"
+                                       action="#{customersBB.deleteCustomer(customer.id)}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg.customer_edit}</f:facet>
+                        <h:commandLink value="#{msg.customer_edit}"
+                                       action="#{customersBB.editCustomer(customer.id)}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+            <h:form>
+                <h:panelGrid id="grid" columns="1">
+                    <h:panelGroup>
+                        <h:outputLabel value="#{msg.customer_name} "/>
+                        <h:inputText label="#{msg.customer_name}" id="customer-name"
+                                     value="#{customersBB.customerName}" required="true"/>
+                        <h:message for="customer-name" errorClass="error"/>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        <h:outputLabel value="#{msg.customer_mail} "/>
+                        <h:inputText label="#{msg.customer_name}" id="customer-email"
+                                     value="#{customersBB.customerEmail}" required="true"/>
+                        <h:message for="customer-name" errorClass="error"/>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        <h:outputLabel value="#{msg.customer_password} "/>
+                        <h:inputText label="#{msg.customer_password}" id="customer-password"
+                                     value="#{customersBB.customerPassword}" required="true"/>
+                        <h:message for="customer-password" errorClass="error"/>
+                    </h:panelGroup>
+
+
+                    <h:commandButton id="submit" value="#{msg.customer_add}" type="submit"
+                                     action="#{customersBB.addCustomer}"/>
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
+
