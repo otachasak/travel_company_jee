@@ -8,8 +8,18 @@
     <file path="$PROJECT_DIR$/../travel_company_presentation/pom.xml" changelist="a3707037-61be-47d0-97aa-6e487205d98e" time="1391459306233" ignored="false" />
     <file path="$MAVEN_REPOSITORY$/cz/cvut/fel/jee/travel_company_business/0.0.1-SNAPSHOT/travel_company_business-0.0.1-SNAPSHOT.pom" changelist="a3707037-61be-47d0-97aa-6e487205d98e" time="1391457329451" ignored="false" />
     <file path="$PROJECT_DIR$/../travel_company_presentation/src/main/resources/META-INF/beans.xml" changelist="a3707037-61be-47d0-97aa-6e487205d98e" time="1391459203018" ignored="false" />
-    <file path="/a.dummy" changelist="a3707037-61be-47d0-97aa-6e487205d98e" time="1391459759008" ignored="false" />
+    <file path="/a.dummy" changelist="a3707037-61be-47d0-97aa-6e487205d98e" time="1391461469931" ignored="false" />
     <file path="$PROJECT_DIR$/../travel_company_presentation/.idea/workspace.xml" changelist="a3707037-61be-47d0-97aa-6e487205d98e" time="1391460474712" ignored="false" />
+    <file path="$PROJECT_DIR$/../travel_company_rest/src/main/webapp/WEB-INF/web.xml" changelist="a3707037-61be-47d0-97aa-6e487205d98e" time="1391461514831" ignored="false" />
+    <file path="$PROJECT_DIR$/../travel_company_rest/src/main/webapp/WEB-INF/beans.xml" changelist="a3707037-61be-47d0-97aa-6e487205d98e" time="1391461439867" ignored="false" />
+    <file path="$PROJECT_DIR$/../travel_company_rest/src/main/webapp/WEB-INF/jboss-web.xml" changelist="a3707037-61be-47d0-97aa-6e487205d98e" time="1391461439867" ignored="false" />
+    <file path="$PROJECT_DIR$/../travel_company_rest/src/main/resources/META-INF/beans.xml" changelist="a3707037-61be-47d0-97aa-6e487205d98e" time="1391461439867" ignored="false" />
+    <file path="$PROJECT_DIR$/../travel_company_rest/pom.xml" changelist="a3707037-61be-47d0-97aa-6e487205d98e" time="1391461439867" ignored="false" />
+    <file path="$PROJECT_DIR$/../travel_company_web/src/main/java/cz/cvut/fel/jee/travel_company/view/beans/CustomersBB.java" changelist="a3707037-61be-47d0-97aa-6e487205d98e" time="1391461661045" ignored="false" />
+    <file path="$PROJECT_DIR$/../travel_company_web/src/main/java/cz/cvut/fel/jee/travel_company/view/beans/DestinationsBB.java" changelist="a3707037-61be-47d0-97aa-6e487205d98e" time="1391461665589" ignored="false" />
+    <file path="$PROJECT_DIR$/../travel_company_web/src/main/webapp/WEB-INF/web.xml" changelist="a3707037-61be-47d0-97aa-6e487205d98e" time="1391461925576" ignored="false" />
+    <file path="$PROJECT_DIR$/../travel_company_web/target/travel_company_web/WEB-INF/web.xml" changelist="a3707037-61be-47d0-97aa-6e487205d98e" time="1391462210400" ignored="false" />
+    <file path="$PROJECT_DIR$/../travel_company_web/target/travel_company_web/WEB-INF/classes/META-INF/beans.xml" changelist="a3707037-61be-47d0-97aa-6e487205d98e" time="1391462598719" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,6 +246,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="travel_company" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="travel_company_business" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="travel_company" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -246,7 +282,7 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../travel_company_rest" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
@@ -386,7 +422,7 @@
       <window_info id="EJB" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1961102" sideWeight="0.0" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1961102" sideWeight="0.0" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />

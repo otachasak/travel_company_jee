@@ -1,8 +1,6 @@
 package cz.cvut.fel.jee.travel_company.view.beans;
 
 import cz.cvut.fel.jee.travel_company.entities.dto.CustomerDTO;
-import cz.cvut.fel.jee.travel_company.entities.dto.DestinationDTO;
-import cz.cvut.fel.jee.travel_company.entities.dto.VacationDTO;
 import cz.cvut.fel.jee.travel_company.services.CustomerService;
 
 import javax.enterprise.context.SessionScoped;
@@ -20,16 +18,14 @@ public class CustomersBB extends BasicBB {
 
     @Inject
     private CustomerService customerService;
-
     private CustomerDTO modifiedCustomer = new CustomerDTO();
-
 
     public List<CustomerDTO> getAllCustomers() {
         return customerService.getAllCustomers();
     }
 
     public void addCustomer() {
-        if(modifiedCustomer.getId() == null) {
+        if (modifiedCustomer.getId() == null) {
             customerService.addCustomer(modifiedCustomer);
         } else {
             customerService.updateCustomer(modifiedCustomer);

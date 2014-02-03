@@ -1,7 +1,5 @@
 package cz.cvut.fel.jee.travel_company.view.beans;
 
-import cz.cvut.fel.jee.travel_company.dao.DestinationDao;
-import cz.cvut.fel.jee.travel_company.entities.Destination;
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 import cz.cvut.fel.jee.travel_company.entities.dto.DestinationDTO;
 import cz.cvut.fel.jee.travel_company.services.DestinationService;
@@ -9,8 +7,6 @@ import cz.cvut.fel.jee.travel_company.services.DestinationService;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
