@@ -35,8 +35,9 @@ public class ReservationManagerBean {
 		this.reservationDao.addReservation(new Reservation(reservation));
 	}
 	
-	public void updateReservation(ReservationDTO reservation) throws EntityNotFoundException{
+	public ReservationDTO updateReservation(ReservationDTO reservation) throws EntityNotFoundException{
 		this.reservationDao.updateReservation(new Reservation(reservation));
+		return reservation;
 	}
 	
 	public void deleteReservation(Long id) throws EntityNotFoundException{

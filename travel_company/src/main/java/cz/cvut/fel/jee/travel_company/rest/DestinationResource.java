@@ -14,9 +14,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 
+import cz.cvut.fel.jee.travel_company.bussiness.DestinationManagerBean;
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 import cz.cvut.fel.jee.travel_company.entities.dto.DestinationDTO;
-import cz.cvut.fel.jee.travel_company.services.DestinationService;
 
 @Path("/destination")
 @Produces("application/json")
@@ -24,7 +24,7 @@ import cz.cvut.fel.jee.travel_company.services.DestinationService;
 public class DestinationResource {
 
 	@Inject
-	private DestinationService destinationMB;
+	private DestinationManagerBean destinationMB;
 	
 	@GET
 	@Path("/")
@@ -35,8 +35,10 @@ public class DestinationResource {
 	@GET
 	@Path("/{id}/")
 	public DestinationDTO findDestination(@PathParam("id") Long id){
-		DestinationDTO destination = this.destinationMB.findDestinationById(id);
-		if(destination == null){
+		DestinationDTO destination;
+		try {
+			destination = this.destinationMB.findDestination(id);
+		} catch (EntityNotFoundException e) {
 			throw new WebApplicationException(Response.Status.NOT_FOUND);
 		}
 		return destination;
@@ -45,7 +47,7 @@ public class DestinationResource {
 	@POST
 	@Path("/")
 	public DestinationDTO addDestination(DestinationDTO destination){
-		this.destinationMB.addDestination(destination.getName());
+		this.destinationMB.addDestination(destination);
 		return destination;
 	}
 	

@@ -14,9 +14,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 
+import cz.cvut.fel.jee.travel_company.bussiness.ReservationManagerBean;
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 import cz.cvut.fel.jee.travel_company.entities.dto.ReservationDTO;
-import cz.cvut.fel.jee.travel_company.services.ReservationService;
 
 @Path("/reservation")
 @Produces("application/json")
@@ -24,19 +24,19 @@ import cz.cvut.fel.jee.travel_company.services.ReservationService;
 public class ReservationResource {
 
 	@Inject
-	private ReservationService reservationMB;
+	private ReservationManagerBean reservationMB;
 	
 	@GET
 	@Path("/")
 	public Collection<ReservationDTO> findAllReservations(){
-		return this.reservationMB.getAllReservations();
+		return this.reservationMB.findAllReservation();
 	}
 	
 	@GET
 	@Path("/{id}/")
 	public ReservationDTO findReservation(@PathParam("id") Long id){
 		try {
-			ReservationDTO reservation = this.reservationMB.getReservationById(id);
+			ReservationDTO reservation = this.reservationMB.findReservation(id);
 			if(reservation == null){
 				throw new WebApplicationException(Response.Status.UNAUTHORIZED);
 			}
@@ -49,7 +49,7 @@ public class ReservationResource {
 	@POST
 	@Path("/")
 	public ReservationDTO addReservation(ReservationDTO reservation){
-		this.reservationMB.createReservation(reservation.getCustomer().getId(), reservation.getVacation().getId(), reservation.getPlaces());
+		this.reservationMB.addReservation(reservation);
 		return reservation;
 	}
 	
