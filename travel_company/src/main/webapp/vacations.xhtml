@@ -35,6 +35,11 @@
                         <f:facet name="header">#{msg.vacation_places}</f:facet>
                         <h:outputText value="#{vacation.places}"/>
                     </h:column>
+                    
+                    <h:column>
+                        <f:facet name="header">#{msg.vacation_price}</f:facet>
+                        <h:outputText value="#{vacation.price}"/>
+                    </h:column>
 
                     <h:column>
                         <f:facet name="header">#{msg.vacation_delete}</f:facet>
@@ -84,6 +89,15 @@
                             <f:convertNumber integerOnly="true"/>
                         </h:inputText>
                         <h:message for="places" errorClass="error"/>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        <h:outputLabel value="#{msg.vacation_price}"/>
+                        <h:inputText id="price" value="#{vacationsBB.price}"
+                                     size="20" required="true"
+                                     label="Receipt Date">
+                            <f:convertNumber integerOnly="true"/>
+                        </h:inputText>
+                        <h:message for="price" errorClass="error"/>
                     </h:panelGroup>
                     <h:commandButton id="submit" value="#{msg.vacation_add}" type="submit"
                                      action="#{vacationsBB.addVacation}"/>

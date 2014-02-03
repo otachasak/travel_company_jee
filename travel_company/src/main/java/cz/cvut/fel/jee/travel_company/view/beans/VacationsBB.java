@@ -1,19 +1,22 @@
 package cz.cvut.fel.jee.travel_company.view.beans;
 
-import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
-import cz.cvut.fel.jee.travel_company.entities.dto.CustomerDTO;
-import cz.cvut.fel.jee.travel_company.entities.dto.DestinationDTO;
-import cz.cvut.fel.jee.travel_company.entities.dto.VacationDTO;
-import cz.cvut.fel.jee.travel_company.services.DestinationService;
-import cz.cvut.fel.jee.travel_company.services.VacationService;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
+import cz.cvut.fel.jee.travel_company.entities.dto.DestinationDTO;
+import cz.cvut.fel.jee.travel_company.entities.dto.VacationDTO;
+import cz.cvut.fel.jee.travel_company.services.DestinationService;
+import cz.cvut.fel.jee.travel_company.services.VacationService;
 
 /**
  *
@@ -114,5 +117,13 @@ public class VacationsBB extends BasicBB {
 
     public void setPlaces(Integer places) {
         modifiedVacation.setPlaces(places);
+    }
+    
+    public BigDecimal getPrice(){
+    	return this.modifiedVacation.getPrice();
+    }
+    
+    public void setPrice(BigDecimal price){
+    	this.modifiedVacation.setPrice(price);
     }
 }

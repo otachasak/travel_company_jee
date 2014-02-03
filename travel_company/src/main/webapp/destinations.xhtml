@@ -16,6 +16,14 @@
                         <h:outputText value="#{destination.name}"/>
                     </h:column>
                     <h:column>
+                        <f:facet name="header">#{msg.destination_lon}</f:facet>
+                        <h:outputText value="#{destination.longtitude}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg.destination_lat}</f:facet>
+                        <h:outputText value="#{destination.latitude}"/>
+                    </h:column>
+                    <h:column>
                         <f:facet name="header">#{msg.destination_delete}</f:facet>
                         <h:commandLink value="#{msg.destination_delete}"
                                        action="#{destinationsBB.deleteDestination(destination.id)}"/>
