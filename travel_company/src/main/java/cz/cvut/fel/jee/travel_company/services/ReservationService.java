@@ -1,10 +1,7 @@
 package cz.cvut.fel.jee.travel_company.services;
 
-import cz.cvut.fel.jee.travel_company.dao.CustomerDao;
-import cz.cvut.fel.jee.travel_company.dao.VacationDao;
-import cz.cvut.fel.jee.travel_company.entities.*;
-import cz.cvut.fel.jee.travel_company.entities.dto.ReservationDTO;
-import cz.cvut.fel.jee.travel_company.dao.ReservationDao;
+import java.util.List;
+import java.util.logging.Level;
 
 import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
@@ -12,9 +9,16 @@ import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.Transient;
-import java.util.List;
-import java.util.logging.Level;
+
+import cz.cvut.fel.jee.travel_company.dao.CustomerDao;
+import cz.cvut.fel.jee.travel_company.dao.ReservationDao;
+import cz.cvut.fel.jee.travel_company.dao.VacationDao;
+import cz.cvut.fel.jee.travel_company.entities.Customer;
+import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
+import cz.cvut.fel.jee.travel_company.entities.Reservation;
+import cz.cvut.fel.jee.travel_company.entities.ReservationState;
+import cz.cvut.fel.jee.travel_company.entities.Vacation;
+import cz.cvut.fel.jee.travel_company.entities.dto.ReservationDTO;
 
 /**
  * @author vlada
@@ -47,6 +51,21 @@ public class ReservationService extends BasicService {
             }
         }
         return null;
+    }
+    
+    @RolesAllowed({"root", "customer"})
+    public ReservationDTO getReservationById(Long id) throws EntityNotFoundException{
+    	ReservationDTO reservation = new ReservationDTO(this.reservationDao.findReservation(id));
+    	if (ejbContext.isCallerInRole("root")) {
+    		return reservation;
+    	}else{
+    		Customer c = customerDao.findCustomerByName(ejbContext.getCallerPrincipal().getName());
+    		if(c.getId().equals(reservation.getCustomer().getId())){
+    			return reservation;
+    		}else{
+    			return null;
+    		}
+    	}
     }
 
     @RolesAllowed({"root", "customer"})
@@ -131,8 +150,7 @@ public class ReservationService extends BasicService {
     }
 
     @RolesAllowed({"root", "customer"})
-    public void deleteReservation(Long reservationId) {
-        try {
+    public void deleteReservation(Long reservationId) throws EntityNotFoundException {
             if (!ejbContext.isCallerInRole("root")) {
                 Customer c = customerDao.findCustomerByName(ejbContext.getCallerPrincipal().getName());
                 Reservation r = reservationDao.findReservation(reservationId);
@@ -141,9 +159,22 @@ public class ReservationService extends BasicService {
                 }
             }
             reservationDao.deleteReservation(reservationId);
-        } catch (EntityNotFoundException e) {
-            logger.log(Level.WARNING, "Unable to delete reservation.", e);
-        }
+    }
+    
+    @RolesAllowed({"root", "customer"})
+    public ReservationDTO updateReservation(ReservationDTO reservation) throws EntityNotFoundException{
+    	if (!ejbContext.isCallerInRole("root")) {
+    		this.reservationDao.updateReservation(new Reservation(reservation));
+    		return reservation;
+    	}else{
+    		Customer c = customerDao.findCustomerByName(ejbContext.getCallerPrincipal().getName());
+    		if(c.getId().equals(reservation.getCustomer().getId())){
+    			this.reservationDao.updateReservation(new Reservation(reservation));
+        		return reservation;
+    		}else{
+    			return null;
+    		}
+    	}
     }
 
     @RolesAllowed({"root"})

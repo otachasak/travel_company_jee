@@ -30,6 +30,8 @@ public class VacationDTO implements Serializable {
     private BigDecimal price;
 
     private int reservationsCount = 0;
+    
+    private double distance;
 
     public VacationDTO() {
 		super();
@@ -47,6 +49,7 @@ public class VacationDTO implements Serializable {
 //        	this.reservations.add(new ReservationDTO(srcReservation));
         }
         this.price = srcVacation.getPrice();
+        this.distance = srcVacation.getDistance();
     }
 
     public Long getId() {
@@ -114,7 +117,23 @@ public class VacationDTO implements Serializable {
         return reservationsCount;
     }
 
-    @Override
+    public int getReservationsCount() {
+		return reservationsCount;
+	}
+
+	public void setReservationsCount(int reservationsCount) {
+		this.reservationsCount = reservationsCount;
+	}
+
+	public double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+
+	@Override
     public String toString() {
         return "VacationDTO {destination:" + getDestination()
                 + ", startDate:" + getStartDate()

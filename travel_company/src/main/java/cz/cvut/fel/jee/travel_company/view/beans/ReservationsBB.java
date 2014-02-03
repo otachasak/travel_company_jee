@@ -1,5 +1,6 @@
 package cz.cvut.fel.jee.travel_company.view.beans;
 
+import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 import cz.cvut.fel.jee.travel_company.entities.dto.CustomerDTO;
 import cz.cvut.fel.jee.travel_company.entities.dto.ReservationDTO;
 import cz.cvut.fel.jee.travel_company.entities.dto.VacationDTO;
@@ -10,9 +11,12 @@ import cz.cvut.fel.jee.travel_company.services.VacationService;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author vlada
@@ -80,7 +84,11 @@ public class ReservationsBB extends BasicBB {
 
 
     public void deleteReservation(Long reservationId) {
-        reservationService.deleteReservation(reservationId);
+        try {
+			reservationService.deleteReservation(reservationId);
+		} catch (EntityNotFoundException e) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+		}
         performFiltering();
     }
 

@@ -14,9 +14,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 
-import cz.cvut.fel.jee.travel_company.bussiness.CustomerManagerBean;
-import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 import cz.cvut.fel.jee.travel_company.entities.dto.CustomerDTO;
+import cz.cvut.fel.jee.travel_company.services.CustomerService;
 
 @Path("/customer")
 @Produces("application/json")
@@ -24,7 +23,7 @@ import cz.cvut.fel.jee.travel_company.entities.dto.CustomerDTO;
 public class CustomerResource {
 	
 	@Inject
-	private CustomerManagerBean customerMB;
+	private CustomerService customerMB;
 	
 	@GET
 	@Path("/")
@@ -35,12 +34,11 @@ public class CustomerResource {
 	@GET
 	@Path("/{id}/")
 	public CustomerDTO findCustomer(@PathParam("id") Long id){
-		try {
-			CustomerDTO customer = this.customerMB.findCustomer(id);
+			CustomerDTO customer = this.customerMB.getCustomerById(id);
+			if(customer == null){
+				throw new WebApplicationException(Response.Status.NOT_FOUND);
+			}
 			return customer;
-		} catch (EntityNotFoundException e) {
-			throw new WebApplicationException(Response.Status.NOT_FOUND);
-		}
 	}
 	
 	@POST
@@ -54,22 +52,14 @@ public class CustomerResource {
 	@Path("/{id}/")
 	public CustomerDTO updateCustomer(@PathParam("id") Long id, CustomerDTO customer){
 		customer.setId(id);
-		try {
 			this.customerMB.updateCustomer(customer);
-		} catch (EntityNotFoundException e) {
-			throw new WebApplicationException(Response.Status.NOT_FOUND);
-		}
 		return customer;
 	}
 	
 	@DELETE
 	@Path("/{id}/")
 	public void deleteCustomer(@PathParam("id") Long id){
-		try {
-			this.customerMB.deleteCustomer(id);
-		} catch (EntityNotFoundException e) {
-			throw new WebApplicationException(Response.Status.NOT_FOUND);
-		}
+		this.customerMB.deleteCustomer(id);
 	}
 
 }

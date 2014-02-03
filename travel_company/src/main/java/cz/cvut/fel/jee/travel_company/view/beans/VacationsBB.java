@@ -1,5 +1,6 @@
 package cz.cvut.fel.jee.travel_company.view.beans;
 
+import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 import cz.cvut.fel.jee.travel_company.entities.dto.CustomerDTO;
 import cz.cvut.fel.jee.travel_company.entities.dto.DestinationDTO;
 import cz.cvut.fel.jee.travel_company.entities.dto.VacationDTO;
@@ -9,7 +10,10 @@ import cz.cvut.fel.jee.travel_company.services.VacationService;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
+
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,17 +40,29 @@ public class VacationsBB extends BasicBB {
         if(modifiedVacation.getId() == null) {
             vacationService.addVacation(modifiedVacation);
         } else {
-           vacationService.updateVacation(modifiedVacation);
+           try {
+			vacationService.updateVacation(modifiedVacation);
+		} catch (EntityNotFoundException e) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+		}
         }
         modifiedVacation = new VacationDTO();
     }
 
     public void deleteVacation(long vacationId) {
-        vacationService.deleteVacation(vacationId);
+        try {
+			vacationService.deleteVacation(vacationId);
+		} catch (EntityNotFoundException e) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+		}
     }
 
     public void editVacation(long vacationId) {
-        modifiedVacation = vacationService.findVacationById(vacationId);
+        try {
+			modifiedVacation = vacationService.findVacationById(vacationId);
+		} catch (EntityNotFoundException e) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+		}
     }
 
     public List<String> getAvailableDestinations() {

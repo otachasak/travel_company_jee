@@ -41,9 +41,11 @@ public class VacationDaoImpl extends BaseDaoImpl implements VacationDao {
     @RolesAllowed({"root"})
 	public void updateVacation(Vacation vacation) throws EntityNotFoundException {
 		Vacation dbVacation = this.findDbVacation(vacation.getId());
-		/*
-		 * TODO
-		 */
+		dbVacation.setDestination(vacation.getDestination());
+		dbVacation.setStartDate(vacation.getStartDate());
+		dbVacation.setEndDate(vacation.getEndDate());
+		dbVacation.setPlaces(vacation.getPlaces());
+		dbVacation.setPrice(vacation.getPrice());
 		this.em.persist(dbVacation);
 	}
 

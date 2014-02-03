@@ -1,5 +1,6 @@
+SET SCHEMA travel;
 
-DELETE FROM customer WHERE id=0;
+DELETE FROM travel.customer WHERE id=0;
 
 INSERT INTO customer(id, name, email, password)
   VALUES(0, 'root','none','Y6nw6nu5gFB5a2SehUgYRQ==');

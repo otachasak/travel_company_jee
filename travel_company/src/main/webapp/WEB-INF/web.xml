@@ -38,6 +38,15 @@
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
+    
+    <servlet>
+        <servlet-name>ProcessPayment</servlet-name>
+        <servlet-class>cz.cvut.fel.jee.travel_company.batch.ProcessIncomePaymentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProcessPayment</servlet-name>
+        <url-pattern>/process-payment</url-pattern>
+    </servlet-mapping>
 
     <distributable/>
 

@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Properties;
 
 import javax.batch.api.chunk.AbstractItemReader;
 import javax.batch.operations.JobOperator;
@@ -20,7 +19,7 @@ public class IncomePaymentReader extends AbstractItemReader{
 	@Inject
 	private JobContext jobContext;
 	private BufferedReader br;
-	private Integer recordNumber;
+	private Integer recordNumber = 0;
 
 	@Override
 	public Object readItem() throws Exception {
@@ -38,9 +37,9 @@ public class IncomePaymentReader extends AbstractItemReader{
 	@Override
 	public void open(Serializable checkpoint) throws Exception {
 		JobOperator jobOperator = BatchRuntime.getJobOperator();
-        Properties jobParameters = jobOperator.getParameters(jobContext.getExecutionId());
-        String resourceName = (String) jobParameters.get("payrollInputDataFileName");
-        FileInputStream inputStream = new FileInputStream(resourceName);        
+     //   Properties jobParameters = jobOperator.getParameters(jobContext.getExecutionId());
+     //   String resourceName = (String) jobParameters.get("inputDataFileName");
+        FileInputStream inputStream = new FileInputStream(this.getClass().getClassLoader().getResource("/META-INF/payments.txt").getFile());        
         br = new BufferedReader(new InputStreamReader(inputStream));
 
         if (checkpoint != null)

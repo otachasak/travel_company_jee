@@ -9,6 +9,8 @@ public class DestinationDTO implements Serializable{
 	
 	private Long id;
 	private String name;
+	private double latitude;
+	private double longtitude;
 
 	public DestinationDTO() {
 		super();
@@ -17,6 +19,8 @@ public class DestinationDTO implements Serializable{
 	public DestinationDTO(Destination destination) {
 		this.name = destination.getName();
 		this.id = destination.getId();
+		this.latitude = destination.getLatitude();
+		this.longtitude = destination.getLongtitude();
 	}
 
 	public String getName() {
@@ -35,7 +39,23 @@ public class DestinationDTO implements Serializable{
 		this.id = id;
 	}
 
-    @Override
+    public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getLongtitude() {
+		return longtitude;
+	}
+
+	public void setLongtitude(double longtitude) {
+		this.longtitude = longtitude;
+	}
+
+	@Override
     public String toString() {
         return "DestionationDTO {id:" + getId()+ ", name:" + getName() + "}";
     }

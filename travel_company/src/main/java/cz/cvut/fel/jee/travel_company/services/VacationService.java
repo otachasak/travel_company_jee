@@ -42,13 +42,9 @@ public class VacationService extends BasicService {
     }
 
     @PermitAll
-    public VacationDTO findVacationById(long vacationId) {
-        try {
+    public VacationDTO findVacationById(long vacationId) throws EntityNotFoundException {
             Vacation v = vacationDao.findVacation(vacationId);
             return new VacationDTO(v);
-        } catch (EntityNotFoundException e) {
-            return null;
-        }
     }
 
     @RolesAllowed({"root"})
@@ -60,25 +56,19 @@ public class VacationService extends BasicService {
     }
 
     @RolesAllowed({"root"})
-    public void updateVacation(VacationDTO vacationDTO) {
-        try {
+    public void updateVacation(VacationDTO vacationDTO) throws EntityNotFoundException {
             Vacation v = vacationDao.findVacation(vacationDTO.getId());
             Destination d = destinationDao.findDestination(vacationDTO.getDestination().getId());
             v.setPlaces(vacationDTO.getPlaces());
+            v.setPrice(vacationDTO.getPrice());
             v.setStartDate(new java.sql.Date(vacationDTO.getStartDate().getTime()));
             v.setEndDate(new java.sql.Date(vacationDTO.getEndDate().getTime()));
             v.setDestination(d);
             vacationDao.updateVacation(v);
-        } catch (EntityNotFoundException e) {
-        }
     }
 
     @RolesAllowed({"root"})
-    public void deleteVacation(long vacationId) {
-        try {
+    public void deleteVacation(long vacationId) throws EntityNotFoundException {
             vacationDao.deleteVacation(vacationId);
-        } catch (EntityNotFoundException e) {
-            logger.log(Level.WARNING, "Unable to delete vacation.", e);
-        }
     }
 }

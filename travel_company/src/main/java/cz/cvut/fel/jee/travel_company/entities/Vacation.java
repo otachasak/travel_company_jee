@@ -37,6 +37,8 @@ public class Vacation extends BaseEntity {
 	
 	private BigDecimal price;
 	
+	private double distance;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "vacation")
 	private Collection<Reservation> reservations;
 
@@ -51,6 +53,7 @@ public class Vacation extends BaseEntity {
 		this.destination = new Destination(vacation.getDestination());
 		this.places = vacation.getPlaces();
 		this.price = vacation.getPrice();
+		this.distance = vacation.getDistance();
 	}
 
 	public Date getStartDate() {
@@ -104,7 +107,15 @@ public class Vacation extends BaseEntity {
 		this.price = price;
 	}
 
-    public int totalReservations() {
+    public double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+
+	public int totalReservations() {
         int reservationsCount = 0;
         for(Reservation r : getReservations()) {
             reservationsCount += r.getPlaces();

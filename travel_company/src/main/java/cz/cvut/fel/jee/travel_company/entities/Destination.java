@@ -18,6 +18,8 @@ public class Destination extends BaseEntity {
 
 	@NotNull
 	private String name;
+	private double latitude;
+	private double longtitude;
 
 	public Destination() {
 		super();
@@ -27,6 +29,8 @@ public class Destination extends BaseEntity {
 		super();
 		this.setId(destination.getId());
 		this.name = destination.getName();
+		this.latitude = destination.getLatitude();
+		this.longtitude = destination.getLongtitude();
 	}
 
 	public String getName() {
@@ -35,6 +39,22 @@ public class Destination extends BaseEntity {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getLongtitude() {
+		return longtitude;
+	}
+
+	public void setLongtitude(double longtitude) {
+		this.longtitude = longtitude;
 	}
 	   
 }

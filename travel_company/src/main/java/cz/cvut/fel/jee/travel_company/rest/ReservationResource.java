@@ -1,5 +1,7 @@
 package cz.cvut.fel.jee.travel_company.rest;
 
+import java.util.Collection;
+
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -12,11 +14,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 
-import java.util.Collection;
-
-import cz.cvut.fel.jee.travel_company.bussiness.ReservationManagerBean;
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 import cz.cvut.fel.jee.travel_company.entities.dto.ReservationDTO;
+import cz.cvut.fel.jee.travel_company.services.ReservationService;
 
 @Path("/reservation")
 @Produces("application/json")
@@ -24,19 +24,22 @@ import cz.cvut.fel.jee.travel_company.entities.dto.ReservationDTO;
 public class ReservationResource {
 
 	@Inject
-	private ReservationManagerBean reservationMB;
+	private ReservationService reservationMB;
 	
 	@GET
 	@Path("/")
 	public Collection<ReservationDTO> findAllReservations(){
-		return this.reservationMB.findAllReservation();
+		return this.reservationMB.getAllReservations();
 	}
 	
 	@GET
 	@Path("/{id}/")
 	public ReservationDTO findReservation(@PathParam("id") Long id){
 		try {
-			ReservationDTO reservation = this.reservationMB.findReservation(id);
+			ReservationDTO reservation = this.reservationMB.getReservationById(id);
+			if(reservation == null){
+				throw new WebApplicationException(Response.Status.UNAUTHORIZED);
+			}
 			return reservation;
 		} catch (EntityNotFoundException e) {
 			throw new WebApplicationException(Response.Status.NOT_FOUND);
@@ -46,7 +49,7 @@ public class ReservationResource {
 	@POST
 	@Path("/")
 	public ReservationDTO addReservation(ReservationDTO reservation){
-		this.reservationMB.addReservation(reservation);
+		this.reservationMB.createReservation(reservation.getCustomer().getId(), reservation.getVacation().getId(), reservation.getPlaces());
 		return reservation;
 	}
 	
@@ -55,7 +58,10 @@ public class ReservationResource {
 	public ReservationDTO updateReservation(@PathParam("id") Long id, ReservationDTO reservation){
 		reservation.setId(id);
 		try {
-			this.reservationMB.updateReservation(reservation);
+			reservation = this.reservationMB.updateReservation(reservation);
+			if(reservation == null){
+				throw new WebApplicationException(Response.Status.UNAUTHORIZED);
+			}
 		} catch (EntityNotFoundException e) {
 			throw new WebApplicationException(Response.Status.NOT_FOUND);
 		}

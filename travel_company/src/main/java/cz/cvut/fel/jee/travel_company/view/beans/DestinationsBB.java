@@ -9,9 +9,11 @@ import cz.cvut.fel.jee.travel_company.services.DestinationService;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -35,7 +37,11 @@ public class DestinationsBB extends BasicBB {
     }
 
     public void deleteDestination(long destinationId) {
-        destinationService.deleteDestination(destinationId);
+        try {
+			destinationService.deleteDestination(destinationId);
+		} catch (EntityNotFoundException e) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+		}
     }
 
     public String getNewDestinationName() {

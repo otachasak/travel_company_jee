@@ -3,19 +3,13 @@ package cz.cvut.fel.jee.travel_company.services;
 import cz.cvut.fel.jee.travel_company.bussiness.EmailSenderBean;
 import cz.cvut.fel.jee.travel_company.dao.CustomerDao;
 import cz.cvut.fel.jee.travel_company.entities.Customer;
-import cz.cvut.fel.jee.travel_company.entities.Destination;
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
-import cz.cvut.fel.jee.travel_company.entities.Vacation;
 import cz.cvut.fel.jee.travel_company.entities.dto.CustomerDTO;
-import cz.cvut.fel.jee.travel_company.entities.dto.DestinationDTO;
-import cz.cvut.fel.jee.travel_company.entities.dto.VacationDTO;
-
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 

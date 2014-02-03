@@ -1,5 +1,7 @@
 package cz.cvut.fel.jee.travel_company.rest;
 
+import java.util.Collection;
+
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -12,11 +14,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 
-import java.util.Collection;
-
-import cz.cvut.fel.jee.travel_company.bussiness.VacationManagerBean;
 import cz.cvut.fel.jee.travel_company.entities.EntityNotFoundException;
 import cz.cvut.fel.jee.travel_company.entities.dto.VacationDTO;
+import cz.cvut.fel.jee.travel_company.services.VacationService;
 
 @Path("/vacation")
 @Produces("application/json")
@@ -24,12 +24,12 @@ import cz.cvut.fel.jee.travel_company.entities.dto.VacationDTO;
 public class VacationResource {
 	
 	@Inject
-	private VacationManagerBean vacationMB;
+	private VacationService vacationMB;
 	
 	@GET
 	@Path("/")
 	public Collection<VacationDTO> findAllVacations(){
-		return this.vacationMB.findAllVacations();
+		return this.vacationMB.getAllVacations();
 	}
 	
 	@GET
@@ -37,7 +37,7 @@ public class VacationResource {
 	public VacationDTO findVacation(@PathParam("id") Long id){
 		VacationDTO vacation;
 		try {
-			vacation = this.vacationMB.findVacation(id);
+			vacation = this.vacationMB.findVacationById(id);
 		} catch (EntityNotFoundException e) {
 			throw new WebApplicationException(Response.Status.NOT_FOUND);
 		}
