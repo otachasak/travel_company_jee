@@ -17,10 +17,6 @@ import javax.inject.Named;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Response;
-
-import org.jboss.logging.Logger;
-import org.jboss.resteasy.client.ClientResponse;
 
 import com.google.gson.Gson;
 

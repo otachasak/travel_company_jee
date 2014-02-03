@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:body>
+    <ui:composition template="/WEB-INF/templates/main-template.xhtml">
+        <ui:param name="pageTitle" value="#{msg.chat}"/>
+        <ui:define name="content">
+<div style="text-align: center;">
+            <form action=""> 
+                
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            Chat<br/>
+                            <textarea readonly="true" rows="6" cols="50" id="chatlogField"></textarea> 
+                        </td>
+                    </tr>
+                    <tr>
+                    <td>Nick:<br/>
+                    <input id="nick" name="nick" value="Nick" type="text"></input>
+                    </td>
+                        <td>
+                            <input onclick="join();" value="Join" type="button"> </input>
+                        </td>
+                    </tr>
+                    <tr>
+                    <td>Message<br/>
+                    <input id="message" name="message" value="message" type="text"></input>
+                    </td>
+                        <td>
+                            <input onclick="send_message();" value="Chat" type="button"> </input>
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+        </div>
+        
+        <div id="output"></div>
+        <script language="javascript" type="text/javascript" src="websocket.js">
+            
+        </script>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
