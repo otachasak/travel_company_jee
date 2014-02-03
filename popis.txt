@@ -1,0 +1,11 @@
+Aplikace Travel company
+- správa destinací, zájezdů, rezervací a uživatelů
+- role:
+	-root (může vše)
+	-customer (vytvářet, prohlížet a spravovat své rezervace)
+	-guest (prohlíží destinace, zájezdy)
+
+- JPA + DerbyDB pro perzistentní vrstvu
+- jms - při založení uživatele je odeslána zpráva do JMS/Queue - pro asynchronní posílání emailů (výpis do konzole)
+- batch api - zpracuje příchozí platby a příslušné rezervace označí jako zaplacené
+- chat realizován pomocí Websocket
